@@ -26,7 +26,6 @@ class HomeContentDesktop extends StatefulWidget {
 
 class HomeContentDesktopState extends State<HomeContentDesktop> {
 //  var _dateNow = new DateTime.now();
-//
 //  Timer _timer;
 //  int day;
 //  int hour;
