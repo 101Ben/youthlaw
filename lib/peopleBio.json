@@ -1,0 +1,44 @@
+[
+  {
+    "group": "leader",
+    "name": "Judge Charles V. Johnson",
+    "link": "https://raw.githubusercontent.com/101Ben/YLFContent/master/Charles%20V.%20Johnson.jpg",
+    "bio": "message"
+  },
+  {
+    "group": "leader",
+    "name": "Judge Norma S. Huggins",
+    "link": "https://raw.githubusercontent.com/101Ben/YLFContent/master/Norma%20S.%20Huggins.jpeg",
+    "bio": "message"
+  },
+  {
+    "group": "leader",
+    "name": "Judge Leroy McCullough",
+    "link": "https://raw.githubusercontent.com/101Ben/YLFContent/master/Pepe%20Leroy.jpg",
+    "bio": "message"
+  },
+  {
+    "group": "speaker20",
+    "name": "Speaker name",
+    "link": "https://raw.githubusercontent.com/101Ben/YLFContent/master/speaker20/speaker.png",
+    "bio": "Speaker bio"
+  },
+  {
+    "group": "speaker20",
+    "name": "Speaker name",
+    "link": "https://raw.githubusercontent.com/101Ben/YLFContent/master/speaker20/speaker.png",
+    "bio": "Speaker bio"
+  },
+  {
+    "group": "speaker20",
+    "name": "Speaker name",
+    "link": "https://raw.githubusercontent.com/101Ben/YLFContent/master/speaker20/speaker.png",
+    "bio": "Speaker bio"
+  },
+  {
+    "group": "speaker20",
+    "name": "Speaker name",
+    "link": "https://raw.githubusercontent.com/101Ben/YLFContent/master/speaker20/speaker.png",
+    "bio": "Speaker bio"
+  }
+]

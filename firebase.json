@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "youthlaw/public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
