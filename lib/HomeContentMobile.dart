@@ -11,7 +11,6 @@ import 'package:youthlaw/globals.dart' as globals;
 import 'dart:html';
 import 'package:youthlaw/HomeInfo.dart';
 import 'package:youthlaw/PictureInfo.dart';
-import 'dart:math';
 
 class HomeContentMobile extends StatefulWidget {
   HomeContentMobile({Key key, this.title}) : super(key: key);
@@ -322,9 +321,9 @@ class HomeContentMobileState extends State<HomeContentMobile> {
               textAlign: TextAlign.center,
             ),
             onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
               setState(() {
                 globals.currentPage = 3;
+                PageContent = forumLink();
               });
             },
           ),
@@ -772,7 +771,6 @@ class HomeContentMobileState extends State<HomeContentMobile> {
   }
 
   Widget header(String text){
-    //var rdm = (new Random()).nextInt(4);
     return Stack(
       alignment: Alignment.topCenter,
       children: <Widget>[
@@ -826,14 +824,14 @@ class HomeContentMobileState extends State<HomeContentMobile> {
   }
 
   Widget countDown(){
-//    int day = globals.days;
-//    int hour = globals.hours;
-//    int minute = globals.minutes;
-//    int sec = globals.secs;
-    int day = 0;
-    int hour = 0;
-    int minute = 0;
-    int sec = 0;
+    int day = globals.days;
+    int hour = globals.hours;
+    int minute = globals.minutes;
+    int sec = globals.secs;
+//    int day = 0;
+//    int hour = 0;
+//    int minute = 0;
+//    int sec = 0;
     return Container(
       child: Row(
         children: [

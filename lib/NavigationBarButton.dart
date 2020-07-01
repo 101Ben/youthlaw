@@ -49,7 +49,7 @@ class NavigationBarButtonState extends State<NavigationBarButton> {
           setState(() {
             globals.currentPage = pageNum;
           });
-          Navigator.push(context, route);
+          //Navigator.push(context, route);
         },
       ),
     );

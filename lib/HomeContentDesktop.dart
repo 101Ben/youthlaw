@@ -13,7 +13,6 @@ import 'package:youthlaw/PeopleInfo.dart';
 import 'package:youthlaw/PictureInfo.dart';
 import 'package:youthlaw/globals.dart' as globals;
 import 'package:url_launcher/url_launcher.dart';
-import 'dart:math';
 
 
 class HomeContentDesktop extends StatefulWidget {
@@ -140,6 +139,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
 
   @override
   void initState(){
+//    _startTimerDesktop();
     fetchPeopleInfo().then((people){
       setState(() {
         _people.addAll(people);
@@ -193,6 +193,38 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
 
   @override
   Widget build(BuildContext context) {
+    switch(globals.currentPage){
+      case 1:
+        {
+          PageContent = homeLink();
+        }
+        break;
+      case 2:
+        {
+          PageContent = infoLink();
+        }
+        break;
+      case 3:
+        {
+          PageContent = forumLink();
+        }
+        break;
+      case 4:
+        {
+          PageContent = historyLink();
+        }
+        break;
+      case 5:
+        {
+          PageContent = sponsorsLink();
+        }
+        break;
+      default:
+        {
+          PageContent = galleryLink();
+        }
+        break;
+    }
    if (globals.currentPage == 3 )PageContent = forumLink();
     // TODO: implement build
     return Scaffold(
@@ -321,9 +353,9 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
               textAlign: TextAlign.center,
             ),
             onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
               setState(() {
                 globals.currentPage = 3;
+                PageContent = forumLink();
               });
             },
           ),
@@ -786,7 +818,6 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
   }
 
   Widget header(String text){
-    var rdm = (new Random()).nextInt(4);
     return Stack(
       alignment: Alignment.topCenter,
       children: <Widget>[

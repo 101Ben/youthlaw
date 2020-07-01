@@ -1,8 +1,8 @@
 library my_prj.globals;
 
 bool isLoggedIn = false;
-int currentPage = 1;
-var dateNow = new DateTime.now();
+int currentPage = 3;
+//var dateNow = new DateTime.now();
 int days = 0;
 int hours = 0;
 int minutes = 0;

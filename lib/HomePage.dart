@@ -16,6 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  var dateNow = new DateTime.now();
 
   Timer _timer;
 //  int days;
@@ -23,7 +24,7 @@ class HomePageState extends State<HomePage> {
 //  int minutes;
 //  int secs;
   void _startTimer(){
-    var difference = globals.eventDate.difference(globals.dateNow);
+    var difference = globals.eventDate.difference(dateNow);
     globals.days = difference.inDays;
     globals.hours = difference.inHours % 24;
     globals.minutes = difference.inMinutes % 60;
@@ -39,7 +40,7 @@ class HomePageState extends State<HomePage> {
         }
         else{
           if(globals.secs > 0)  {
-            globals.secs--;
+            globals.secs -= 1;
           }
           else if(globals.secs == 0) {
             if(globals.minutes > 0){
