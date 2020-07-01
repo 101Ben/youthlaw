@@ -140,9 +140,9 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
   @override
   void initState(){
 //    _startTimerDesktop();
-    fetchMenuInfo().then((value){
-      setState(() {
-        _Menu.addAll(value);
+//    fetchMenuInfo().then((value){
+//      setState(() {
+//        _Menu.addAll(value);
 //        switch(globals.currentPage){
 //          case 1:
 //            {
@@ -175,8 +175,8 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
 //            }
 //            break;
 //        }
-      });
-    });
+//      });
+//    });
     fetchPeopleInfo().then((people){
       setState(() {
         _people.addAll(people);
@@ -596,12 +596,14 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
               header("Our Sponsors"),
               Divider(),
               Container(
-                height: 1000.0,
+                height: 500.0,
+                color: Colors.grey,
+                margin: EdgeInsets.symmetric(horizontal: 18.0),
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 6,
                     crossAxisSpacing: 5.0,
-                    mainAxisSpacing: 10.0,
+                    mainAxisSpacing: 4.0,
                     childAspectRatio: 0.9,
                   ),
                     itemCount: logo.length,

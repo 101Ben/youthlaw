@@ -135,9 +135,9 @@ class HomeContentMobileState extends State<HomeContentMobile> {
   @override
   void initState(){
 //    _startTimerMobile();
-    fetchMenuInfo().then((value){
-      setState(() {
-        _Menu.addAll(value);
+//    fetchMenuInfo().then((value){
+//      setState(() {
+//        _Menu.addAll(value);
 //        switch(globals.currentPage){
 //          case 1:
 //            {
@@ -170,8 +170,8 @@ class HomeContentMobileState extends State<HomeContentMobile> {
 //            }
 //            break;
 //        }
-      });
-    });
+//      });
+//    });
     fetchPicInfo().then((entry){
       setState(() {
         _pictures.addAll(entry);
@@ -616,12 +616,14 @@ class HomeContentMobileState extends State<HomeContentMobile> {
               header("Our Sponsors"),
               Divider(),
               Container(
-                height: 1000.0,
+                height: 800.0,
+                color: Colors.grey,
+                margin: EdgeInsets.symmetric(horizontal: 18.0),
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     crossAxisSpacing: 5.0,
-                    mainAxisSpacing: 10.0,
+                    mainAxisSpacing: 4.0,
                     childAspectRatio: 0.9,
                   ),
                   itemCount: logo.length,
