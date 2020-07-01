@@ -140,6 +140,43 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
   @override
   void initState(){
 //    _startTimerDesktop();
+    fetchMenuInfo().then((value){
+      setState(() {
+        _Menu.addAll(value);
+//        switch(globals.currentPage){
+//          case 1:
+//            {
+//              PageContent = homeLink();
+//            }
+//            break;
+//          case 2:
+//            {
+//              PageContent = infoLink();
+//            }
+//            break;
+//          case 3:
+//            {
+//              PageContent = forumLink();
+//            }
+//            break;
+//          case 4:
+//            {
+//              PageContent = historyLink();
+//            }
+//            break;
+//          case 5:
+//            {
+//              PageContent = sponsorsLink();
+//            }
+//            break;
+//          default:
+//            {
+//              PageContent = galleryLink();
+//            }
+//            break;
+//        }
+      });
+    });
     fetchPeopleInfo().then((people){
       setState(() {
         _people.addAll(people);
@@ -150,120 +187,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
         _pictures.addAll(entry);
       });
     });
-    fetchMenuInfo().then((value){
-      setState(() {
-        _Menu.addAll(value);
-        switch(globals.currentPage){
-          case 1:
-            {
-              PageContent = homeLink();
-            }
-            break;
-          case 2:
-            {
-              PageContent = infoLink();
-            }
-            break;
-          case 3:
-            {
-              PageContent = forumLink();
-            }
-            break;
-          case 4:
-            {
-              PageContent = historyLink();
-            }
-            break;
-          case 5:
-            {
-              PageContent = sponsorsLink();
-            }
-            break;
-          default:
-            {
-              PageContent = galleryLink();
-            }
-            break;
-        }
-      });
-    });
     super.initState();
-  }
-
-
-  @override
-  Widget build(BuildContext context) {
-    switch(globals.currentPage){
-      case 1:
-        {
-          PageContent = homeLink();
-        }
-        break;
-      case 2:
-        {
-          PageContent = infoLink();
-        }
-        break;
-      case 3:
-        {
-          PageContent = forumLink();
-        }
-        break;
-      case 4:
-        {
-          PageContent = historyLink();
-        }
-        break;
-      case 5:
-        {
-          PageContent = sponsorsLink();
-        }
-        break;
-      default:
-        {
-          PageContent = galleryLink();
-        }
-        break;
-    }
-   if (globals.currentPage == 3 )PageContent = forumLink();
-    // TODO: implement build
-    return Scaffold(
-      body: Row(
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: NavigationBar(),
-          ),
-          Expanded(
-            flex: 4,
-            child: Container(
-              child: ListView(
-                //mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
-                    child: Center(
-                      child:
-                      SelectableText(
-                        "Judge Charles V. Johnson",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.italic,
-                          fontSize: 38,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    child: PageContent ,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 
   Widget homeLink(){
@@ -320,14 +244,14 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
                 ),
                 margin: const EdgeInsets.all(22),
                 child: Image.network(
-                    'https://raw.githubusercontent.com/101Ben/YLFContent/master/banner20.jpeg',
+                    'https://raw.githubusercontent.com/101Ben/YLFContent/master/banner.png',
                 fit: BoxFit.fill,width: 400, height: 400, semanticLabel: "2020 Forum",),
               ),
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0),
                   child: SelectableText(
-                    _Menu.first.message,
+                    globals.homeMessage,
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.black,
@@ -386,7 +310,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 32.0, horizontal: 128.0),
                 child: SelectableText(
-                  _Menu.first.whatisit,
+                  globals.whatIsIt,
                   scrollPhysics: BouncingScrollPhysics(),
                   style: TextStyle(
                     fontSize: 20
@@ -602,7 +526,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 32.0, horizontal: 128.0),
                 child: SelectableText(
-                  _Menu.first.objectives,
+                  globals.objectives,
                   style: TextStyle(
                       fontSize: 20
                   ),
@@ -621,7 +545,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 32.0, horizontal: 128.0),
                 child: SelectableText(
-                  _Menu.first.history,
+                  globals.history,
                   style: TextStyle(
                       fontSize: 20
                   ),
@@ -960,6 +884,86 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
             ],
           ),
           Divider(),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    //if (globals.currentPage == 3 )PageContent = forumLink();
+//    switch(globals.currentPage){
+//      case 1:
+//        {
+//          PageContent = homeLink();
+//        }
+//        break;
+//      case 2:
+//        {
+//          PageContent = infoLink();
+//        }
+//        break;
+//      case 3:
+//        {
+//          PageContent = forumLink();
+//        }
+//        break;
+//      case 4:
+//        {
+//          PageContent = historyLink();
+//        }
+//        break;
+//      case 5:
+//        {
+//          PageContent = sponsorsLink();
+//        }
+//        break;
+//      default:
+//        {
+//          PageContent = galleryLink();
+//        }
+//        break;
+//    }
+    // TODO: implement build
+    return Scaffold(
+      body: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: NavigationBar(),
+          ),
+          Expanded(
+            flex: 4,
+            child: Container(
+              child: ListView(
+                //mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    child: Center(
+                      child:
+                      SelectableText(
+                        "Judge Charles V. Johnson",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.italic,
+                          fontSize: 38,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    child:
+                    globals.currentPage == 1 ? homeLink() :
+                      (globals.currentPage == 2 ? infoLink() :
+                        globals.currentPage == 3 ? forumLink() :
+                        globals.currentPage == 4 ? historyLink() :
+                        globals.currentPage == 5 ? sponsorsLink() : galleryLink()), //PageContent ,
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

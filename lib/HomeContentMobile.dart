@@ -135,6 +135,43 @@ class HomeContentMobileState extends State<HomeContentMobile> {
   @override
   void initState(){
 //    _startTimerMobile();
+    fetchMenuInfo().then((value){
+      setState(() {
+        _Menu.addAll(value);
+//        switch(globals.currentPage){
+//          case 1:
+//            {
+//              PageContent = homeLink();
+//            }
+//            break;
+//          case 2:
+//            {
+//              PageContent = infoLink();
+//            }
+//            break;
+//          case 3:
+//            {
+//              PageContent = forumLink();
+//            }
+//            break;
+//          case 4:
+//            {
+//              PageContent = historyLink();
+//            }
+//            break;
+//          case 5:
+//            {
+//              PageContent = sponsorsLink();
+//            }
+//            break;
+//          default:
+//            {
+//              PageContent = galleryLink();
+//            }
+//            break;
+//        }
+      });
+    });
     fetchPicInfo().then((entry){
       setState(() {
         _pictures.addAll(entry);
@@ -145,83 +182,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
         _people.addAll(people);
       });
     });
-    fetchMenuInfo().then((value){
-      setState(() {
-        _Menu.addAll(value);
-        switch(globals.currentPage){
-          case 1:
-            {
-              PageContent = homeLink();
-            }
-            break;
-          case 2:
-            {
-              PageContent = infoLink();
-            }
-            break;
-          case 3:
-            {
-              PageContent = forumLink();
-            }
-            break;
-          case 4:
-            {
-              PageContent = historyLink();
-            }
-            break;
-          case 5:
-            {
-              PageContent = sponsorsLink();
-            }
-            break;
-          case 6:
-            {
-              PageContent = galleryLink();
-            }
-            break;
-          default:
-            {
-              PageContent = galleryLink();
-            }
-            break;
-        }
-      });
-    });
     super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (globals.currentPage == 3 )PageContent = forumLink();
-    // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.grey,
-        title: SelectableText(
-          "Judge Charles V. Johnson",
-          style: TextStyle(
-            fontWeight: FontWeight.w400,
-            fontSize: 24,
-            color: Colors.black
-          ),
-          textAlign: TextAlign.center,
-        ),
-        leading: IconButton(
-          icon: Icon(Icons.list),
-          color: Colors.black,
-          onPressed: (){
-            Scaffold.of(context).openDrawer();
-          },
-        ),
-      ),
-      body: ListView(
-        children: <Widget>[
-          Container(
-            child: PageContent,
-          ),
-        ],
-      ),
-    );
   }
 
   Widget homeLink(){
@@ -291,13 +252,13 @@ class HomeContentMobileState extends State<HomeContentMobile> {
             ),
             margin: const EdgeInsets.all(22),
             child: Image.network(
-              'https://raw.githubusercontent.com/101Ben/YLFContent/master/banner20.jpeg',
+              'https://raw.githubusercontent.com/101Ben/YLFContent/master/banner.png',
               fit: BoxFit.fill, width: 400, height: 400, semanticLabel: "2020 Forum", ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0),
             child: SelectableText(
-              _Menu.first.message,
+              globals.homeMessage,
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.black,
@@ -368,7 +329,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 18.0),
                   child: SelectableText(
-                    _Menu.first.whatisit,
+                    globals.whatIsIt,
                     scrollPhysics: BouncingScrollPhysics(),
                     style: TextStyle(
                         fontSize: 20
@@ -586,7 +547,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 18.0),
                 child: SelectableText(
-                  _Menu.first.objectives,
+                    globals.objectives,
                   style: TextStyle(
                       fontSize: 20
                   ),
@@ -605,7 +566,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 18.0),
                 child: SelectableText(
-                  _Menu.first.history,
+                  globals.history,
                   style: TextStyle(
                       fontSize: 20
                   ),
@@ -921,6 +882,83 @@ class HomeContentMobileState extends State<HomeContentMobile> {
       ),
     );
   }
+
+  @override
+  Widget build(BuildContext context) {
+    //if (globals.currentPage == 3 )PageContent = forumLink();
+//    switch(globals.currentPage){
+//      case 1:
+//        {
+//          PageContent = homeLink();
+//        }
+//        break;
+//      case 2:
+//        {
+//          PageContent = infoLink();
+//        }
+//        break;
+//      case 3:
+//        {
+//          PageContent = forumLink();
+//        }
+//        break;
+//      case 4:
+//        {
+//          PageContent = historyLink();
+//        }
+//        break;
+//      case 5:
+//        {
+//          PageContent = sponsorsLink();
+//        }
+//        break;
+//      case 6:
+//        {
+//          PageContent = galleryLink();
+//        }
+//        break;
+//      default:
+//        {
+//          PageContent = galleryLink();
+//        }
+//        break;
+//    }
+    // TODO: implement build
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.grey,
+        title: SelectableText(
+          "Judge Charles V. Johnson",
+          style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 24,
+              color: Colors.black
+          ),
+          textAlign: TextAlign.center,
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.list),
+          color: Colors.black,
+          onPressed: (){
+            Scaffold.of(context).openDrawer();
+          },
+        ),
+      ),
+      body: ListView(
+        children: <Widget>[
+          Container(
+            child:
+            globals.currentPage == 1 ? homeLink() :
+            (globals.currentPage == 2 ? infoLink() :
+            globals.currentPage == 3 ? forumLink() :
+            globals.currentPage == 4 ? historyLink() :
+            globals.currentPage == 5 ? sponsorsLink() : galleryLink()),
+          ),
+        ],
+      ),
+    );
+  }
+
 }
 
 class leaderCard extends StatelessWidget{
