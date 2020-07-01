@@ -474,8 +474,9 @@ class HomeContentMobileState extends State<HomeContentMobile> {
                   onPressed: (){
                     setState(() {
                       contentImage = Container(
-                        height: 600.0,
-                        padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 18.0),
+                        height: 150.0 * _speakers.length,
+                        color: Colors.grey,
+                        margin: EdgeInsets.symmetric(vertical: 12.0, horizontal: 22.0),
                         child:
                         ListView.builder(
                           scrollDirection: Axis.vertical,
