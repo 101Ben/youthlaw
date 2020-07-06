@@ -474,18 +474,22 @@ class HomeContentMobileState extends State<HomeContentMobile> {
                   onPressed: (){
                     setState(() {
                       contentImage = Container(
-                        height: 150.0 * _speakers.length,
-                        color: Colors.grey,
                         margin: EdgeInsets.symmetric(vertical: 12.0, horizontal: 22.0),
                         child:
-                        ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: _speakers.length,
-                          itemBuilder: (context, index){
-                            return
-                              leaderCard(_speakers[index].link, _speakers[index].name, _speakers[index].bio);
-                          },
+                        Column(
+                          children: [
+                            for (var i = 0; i < _speakers.length; i++)
+                              leaderCard(_speakers[i].link, _speakers[i].name, _speakers[i].bio),
+                          ],
                         ),
+//                        ListView.builder(
+//                          scrollDirection: Axis.vertical,
+//                          itemCount: _speakers.length,
+//                          itemBuilder: (context, index){
+//                            return
+//                              leaderCard(_speakers[index].link, _speakers[index].name, _speakers[index].bio);
+//                          },
+//                        ),
                       );
                     });
                     build(context);
@@ -616,30 +620,38 @@ class HomeContentMobileState extends State<HomeContentMobile> {
             children: <Widget>[
               header("Our Sponsors"),
               Divider(),
-              Container(
-                height: 800.0,
-                color: Colors.grey,
-                margin: EdgeInsets.symmetric(horizontal: 18.0),
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 5.0,
-                    mainAxisSpacing: 4.0,
-                    childAspectRatio: 0.9,
-                  ),
-                  itemCount: logo.length,
-                  itemBuilder: (context, index){
-                    return Container(
-                      width: 100.0,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                      ),
-                      margin: const EdgeInsets.all(12),
-                      child: Image.network(logo[index], fit:BoxFit.fill),
-                    );
-                  },
+              for (var i = 0; i < logo.length; i++) Container(
+                width: 300.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
                 ),
+                margin: const EdgeInsets.all(12),
+                child: Image.network(logo[i], fit: BoxFit.fill),
               ),
+//              Container(
+//                height: 800.0,
+//                color: Colors.grey,
+//                margin: EdgeInsets.symmetric(horizontal: 18.0),
+//                child: GridView.builder(
+//                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                    crossAxisCount: 3,
+//                    crossAxisSpacing: 5.0,
+//                    mainAxisSpacing: 4.0,
+//                    childAspectRatio: 0.9,
+//                  ),
+//                  itemCount: logo.length,
+//                  itemBuilder: (context, index){
+//                    return Container(
+//                      width: 100.0,
+//                      decoration: BoxDecoration(
+//                        shape: BoxShape.rectangle,
+//                      ),
+//                      margin: const EdgeInsets.all(12),
+//                      child: Image.network(logo[index], fit:BoxFit.fill),
+//                    );
+//                  },
+//                ),
+//              ),
               SizedBox(
                 height: 140.0,
               ),

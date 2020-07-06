@@ -459,19 +459,24 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
                     setState(() {
                       contentImage = Container(
                         padding: EdgeInsets.symmetric(vertical: 32.0, horizontal: 128.0),
-                        child:
-                        Container(
-                          height: 540.0,
-                          child:
-                          ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            itemCount: _speakers.length,
-                            itemBuilder: (context, index){
-                              return
-                                leaderCard(_speakers[index].link, _speakers[index].name, _speakers[index].bio);
-                            },
-                          ),
+                        child: Column(
+                          children: [
+                            for (var i = 0; i < _speakers.length; i++)
+                          leaderCard(_speakers[i].link, _speakers[i].name, _speakers[i].bio),
+                          ],
                         ),
+//                        Container(
+//                          height: 540.0,
+//                          child:
+//                          ListView.builder(
+//                            scrollDirection: Axis.vertical,
+//                            itemCount: _speakers.length,
+//                            itemBuilder: (context, index){
+//                              return
+//                                leaderCard(_speakers[index].link, _speakers[index].name, _speakers[index].bio);
+//                            },
+//                          ),
+//                        ),
                       );
                     });
                     build(context);
@@ -595,31 +600,39 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
             children: <Widget>[
               header("Our Sponsors"),
               Divider(),
-              Container(
-                height: 500.0,
-                color: Colors.grey,
-                margin: EdgeInsets.symmetric(horizontal: 18.0),
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 6,
-                    crossAxisSpacing: 5.0,
-                    mainAxisSpacing: 4.0,
-                    childAspectRatio: 0.9,
-                  ),
-                    itemCount: logo.length,
-                    itemBuilder: (context, index){
-                      return Container(
-                        width: 100.0,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                        ),
-                        margin: const EdgeInsets.all(12),
-                        child: Image.network(logo[index], fit:BoxFit.fill),
-                      );
-                    },
-                  ),
-                  //scrollDirection: Axis.vertical,
+              for (var i = 0; i < logo.length; i++) Container(
+                width: 300.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
                 ),
+                margin: const EdgeInsets.all(32),
+                child: Image.network(logo[i], fit: BoxFit.cover),
+              ),
+//              Container(
+//                height: 500.0,
+//                color: Colors.grey,
+//                margin: EdgeInsets.symmetric(horizontal: 18.0),
+//                child: GridView.builder(
+//                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                    crossAxisCount: 6,
+//                    crossAxisSpacing: 5.0,
+//                    mainAxisSpacing: 4.0,
+//                    childAspectRatio: 0.9,
+//                  ),
+//                    itemCount: logo.length,
+//                    itemBuilder: (context, index){
+//                      return Container(
+//                        width: 100.0,
+//                        decoration: BoxDecoration(
+//                          shape: BoxShape.rectangle,
+//                        ),
+//                        margin: const EdgeInsets.all(12),
+//                        child: Image.network(logo[index], fit:BoxFit.fill),
+//                      );
+//                    },
+//                  ),
+//                  //scrollDirection: Axis.vertical,
+//                ),
               SizedBox(
                 height: 100.0,
               ),
