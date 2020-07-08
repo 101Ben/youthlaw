@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:html';
+import 'dart:html' as html;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:youthlaw/HomeInfo.dart';
@@ -13,6 +13,7 @@ import 'package:youthlaw/PeopleInfo.dart';
 import 'package:youthlaw/PictureInfo.dart';
 import 'package:youthlaw/globals.dart' as globals;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 
 class HomeContentDesktop extends StatefulWidget {
@@ -190,6 +191,13 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
     super.initState();
   }
 
+  void downloadFile(String url){
+    html.AnchorElement anchorElement =  new html.AnchorElement(href: url);
+    anchorElement.download = url;
+    anchorElement.click();
+  }
+
+
   Widget homeLink(){
     return Container(
       child: Column(
@@ -356,6 +364,8 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
         _speakers.add(temp);
       }
     }
+    double _scale = 1.0;
+    double _previousScale = 1.0;
     return Container(
       child: Center(
         child: Column(
@@ -404,14 +414,44 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
                     setState(() {
                       contentImage = Column(
                         children: <Widget>[
-                          Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
+                          GestureDetector(
+                            onScaleStart: (ScaleStartDetails details) {
+                              print(details);
+                              _previousScale = _scale;
+                              setState(() {});
+                            },
+                            onScaleUpdate: (ScaleUpdateDetails details) {
+                              print(details);
+                              _scale = _previousScale * details.scale;
+                              setState(() {});
+                            },
+                            onScaleEnd: (ScaleEndDetails details) {
+                              print(details);
+
+                              _previousScale = 1.0;
+                              setState(() {});
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.rectangle,
+                              ),
+                              margin: const EdgeInsets.all(12),
+                              child: Transform(
+                                alignment: FractionalOffset.center,
+                                transform: Matrix4.diagonal3(Vector3(_scale, _scale, _scale)),
+                                child: Image.network(
+                                    'https://raw.githubusercontent.com/101Ben/YLFContent/master/assetslogo/scheduleOne.png'),
+                              ),
+                            ),
                           ),
-                            margin: const EdgeInsets.all(12),
-                            child: Image.network(
-                          'https://raw.githubusercontent.com/101Ben/YLFContent/master/assetslogo/scheduleOne.png'),
-                          ),
+//                          Container(
+//                          decoration: BoxDecoration(
+//                            shape: BoxShape.rectangle,
+//                          ),
+//                            margin: const EdgeInsets.all(12),
+//                            child: Image.network(
+//                          'https://raw.githubusercontent.com/101Ben/YLFContent/master/assetslogo/scheduleOne.png'),
+//                          ),
                           Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
@@ -487,6 +527,20 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
             Divider(),
             Container(
               child: contentImage,
+            ),
+            FlatButton(
+              child: Text(
+                'DownLoad Schedule',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 16,
+                  decoration: TextDecoration.underline,
+                ),),
+              onPressed: (){
+                downloadFile('https://github.com/101Ben/YLFContent/raw/master/ylf%202020%20schedule.pdf');
+              },
             ),
             SizedBox(
               height: 200.0,
@@ -566,17 +620,23 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
               ),
             ),
             Container(
-              height: 540.0,
+//              height: 6000.0,
               padding: EdgeInsets.symmetric(vertical: 32.0, horizontal: 128.0),
               child:
-              ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: _leaders.length,
-                itemBuilder: (context, index){
-                  return
-                    leaderCard(_leaders[index].link, _leaders[index].name, _leaders[index].bio);
-                },
+              Column(
+                children: [
+                  for (var i = 0; i < _leaders.length; i++)
+                    leaderCard(_leaders[i].link, _leaders[i].name, _leaders[i].bio),
+                ],
               ),
+//              ListView.builder(
+//                scrollDirection: Axis.vertical,
+//                itemCount: _leaders.length,
+//                itemBuilder: (context, index){
+//                  return
+//                    leaderCard(_leaders[index].link, _leaders[index].name, _leaders[index].bio);
+//                },
+//              ),
             ),
             SizedBox(
               height: 140.0,
@@ -1029,9 +1089,9 @@ class leaderCard extends StatelessWidget{
                       fontWeight: FontWeight.w700,
                     ),),
                   subtitle: Text(
-                      message,
+                      "\n" + message,
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 14,
                       )
                   ),
                 ),

@@ -8,9 +8,10 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:youthlaw/HomePage.dart';
 import 'package:youthlaw/PeopleInfo.dart';
 import 'package:youthlaw/globals.dart' as globals;
-import 'dart:html';
+import 'dart:html' as html;
 import 'package:youthlaw/HomeInfo.dart';
 import 'package:youthlaw/PictureInfo.dart';
+import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 class HomeContentMobile extends StatefulWidget {
   HomeContentMobile({Key key, this.title}) : super(key: key);
@@ -183,6 +184,12 @@ class HomeContentMobileState extends State<HomeContentMobile> {
       });
     });
     super.initState();
+  }
+
+  void downloadFile(String url){
+    html.AnchorElement anchorElement =  new html.AnchorElement(href: url);
+    anchorElement.download = url;
+    anchorElement.click();
   }
 
   Widget homeLink(){
@@ -376,6 +383,8 @@ class HomeContentMobileState extends State<HomeContentMobile> {
         _speakers.add(temp);
       }
     }
+    double _scale = 1.0;
+    double _previousScale = 1.0;
     return Container(
       child: Center(
         child: Column(
@@ -421,14 +430,44 @@ class HomeContentMobileState extends State<HomeContentMobile> {
                     setState(() {
                       contentImage = Column(
                         children: <Widget>[
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
+                          GestureDetector(
+                            onScaleStart: (ScaleStartDetails details) {
+                              print(details);
+                              _previousScale = _scale;
+                              setState(() {});
+                            },
+                            onScaleUpdate: (ScaleUpdateDetails details) {
+                              print(details);
+                              _scale = _previousScale * details.scale;
+                              setState(() {});
+                            },
+                            onScaleEnd: (ScaleEndDetails details) {
+                              print(details);
+
+                              _previousScale = 1.0;
+                              setState(() {});
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.rectangle,
+                              ),
+                              margin: const EdgeInsets.all(12),
+                              child: Transform(
+                                alignment: FractionalOffset.center,
+                                transform: Matrix4.diagonal3(Vector3(_scale, _scale, _scale)),
+                                child: Image.network(
+                                    'https://raw.githubusercontent.com/101Ben/YLFContent/master/assetslogo/scheduleOne.png'),
+                              ),
                             ),
-                            margin: const EdgeInsets.all(12),
-                            child: Image.network(
-                                'https://raw.githubusercontent.com/101Ben/YLFContent/master/assetslogo/scheduleOne.png'),
                           ),
+//                          Container(
+//                            decoration: BoxDecoration(
+//                              shape: BoxShape.rectangle,
+//                            ),
+//                            margin: const EdgeInsets.all(12),
+//                            child: Image.network(
+//                                'https://raw.githubusercontent.com/101Ben/YLFContent/master/assetslogo/scheduleOne.png'),
+//                          ),
                           Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
@@ -500,6 +539,20 @@ class HomeContentMobileState extends State<HomeContentMobile> {
             Divider(),
             Container(
               child: contentImage,
+            ),
+            FlatButton(
+              child: Text(
+                'DownLoad Schedule',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 12,
+                  decoration: TextDecoration.underline,
+                ),),
+              onPressed: (){
+                downloadFile('https://github.com/101Ben/YLFContent/raw/master/ylf%202020%20schedule.pdf');
+              },
             ),
             SizedBox(
               height: 140.0,
@@ -587,17 +640,23 @@ class HomeContentMobileState extends State<HomeContentMobile> {
               ),
             ),
             Container(
-              height: 520.0,
+//              height: 520.0,
               padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 18.0),
               child:
-              ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: _leaders.length,
-                itemBuilder: (context, index){
-                  return
-                    leaderCard(_leaders[index].link, _leaders[index].name, _leaders[index].bio);
-                },
+              Column(
+                children: [
+                  for (var i = 0; i < _leaders.length; i++)
+                    leaderCard(_leaders[i].link, _leaders[i].name, _leaders[i].bio),
+                ],
               ),
+//              ListView.builder(
+//                scrollDirection: Axis.vertical,
+//                itemCount: _leaders.length,
+//                itemBuilder: (context, index){
+//                  return
+//                    leaderCard(_leaders[index].link, _leaders[index].name, _leaders[index].bio);
+//                },
+//              ),
             ),
             SizedBox(
               height: 140.0,
@@ -990,25 +1049,26 @@ class leaderCard extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 16.0, bottom: 16.0, right: 16.0),
-        child: Row(
-          children: <Widget>[
-            Container(
-                width: 120.0,
-                height: 120.0,
-                decoration: new BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: new DecorationImage(
-                      //fit: BoxFit.fill,
-                      image: new NetworkImage(link),
-                    )
-                )
-            ),
-            Divider(),
-            Expanded(
-              child: SizedBox(
+    return Container(
+      height: message.length <= 20 ? 200.0 : message.length/4.0,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 16.0, bottom: 16.0, right: 16.0),
+          child: ListView(
+            children: <Widget>[
+              Container(
+                  width: 120.0,
+                  height: 120.0,
+                  decoration: new BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: new DecorationImage(
+                        //fit: BoxFit.fill,
+                        image: new NetworkImage(link),
+                      )
+                  )
+              ),
+              Divider(),
+              SizedBox(
                 child: ListTile(
                   title:
                   Text(
@@ -1016,17 +1076,20 @@ class leaderCard extends StatelessWidget{
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
-                    ),),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                   subtitle: Text(
-                      message,
+                      "\n" + message,
                       style: TextStyle(
-                        fontSize: 10,
-                      )
+                        fontSize: 12,
+                      ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
