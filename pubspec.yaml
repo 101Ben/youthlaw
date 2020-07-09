@@ -25,6 +25,8 @@ dependencies:
     sdk: flutter
   http: ^0.12.1
   url_launcher: ^5.4.2
+  flutter_launcher_icons: ^0.7.3
+  flutter_launcher_name: ^0.0.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -36,6 +38,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_launcher_name:
+  name: "Youth and Law Forum"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
