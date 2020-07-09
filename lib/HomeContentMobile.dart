@@ -871,7 +871,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
               ),
             ),
             Text(
-              'days\t\thours\t\tminutes\t\tsec',
+              'days\t\thours\t\tminutes\t\tseconds',
               style: TextStyle(
                 fontSize: 9,
               ),
