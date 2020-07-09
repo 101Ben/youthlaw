@@ -392,13 +392,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
           children: [
             header("The Power in Each of us a Flame"),
             Divider(),
-            Container(
-              width: 330,
-              padding: EdgeInsets.only(left: 50.0) ,
-              height: 70,
-              //width: 140,
-              child: Center(child: countDown()),
-            ),
+            Center(child: countDown()),
             SizedBox(
               child: SelectableText(
                 'Date: September 26, 2020',
@@ -863,99 +857,128 @@ class HomeContentMobileState extends State<HomeContentMobile> {
     int hour = globals.hours;
     int minute = globals.minutes;
     int sec = globals.secs;
-//    int day = 0;
-//    int hour = 0;
-//    int minute = 0;
-//    int sec = 0;
     return Container(
-      child: Row(
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                '$day :',
-                style: TextStyle(
-                  fontSize: 34,
-                ),
+      height: 60.0,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+          Text(
+              '$day : $hour : $minute : $sec',
+              style: TextStyle(
+                fontSize: 36,
               ),
-              Text(
-                'days',
-                style: TextStyle(
-                  fontSize: 9,
-                ),
+            ),
+            Text(
+              'days\t\thours\t\tminutes\t\tsec',
+              style: TextStyle(
+                fontSize: 9,
               ),
-            ],
-          ),
-          Divider(
-            thickness: 2.0,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                ' $hour :',
-                style: TextStyle(
-                  fontSize: 34,
-                ),
-              ),
-              Text(
-                'hours',
-                style: TextStyle(
-                  fontSize: 9,
-                ),
-              ),
-            ],
-          ),
-          Divider(
-            thickness: 2.0,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                ' $minute :',
-                style: TextStyle(
-                  fontSize: 34,
-                ),
-              ),
-              Text(
-                'minutes',
-                style: TextStyle(
-                  fontSize: 9,
-                ),
-              ),
-            ],
-          ),
-          Divider(
-            thickness: 2.0,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                ' $sec',
-                style: TextStyle(
-                  fontSize: 34,
-                ),
-              ),
-              Text(
-                ' seconds',
-                style: TextStyle(
-                  fontSize: 9,
-                ),
-              ),
-            ],
-          ),
-          Divider(),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
+//  Widget countDown(){
+//    int day = globals.days;
+//    int hour = globals.hours;
+//    int minute = globals.minutes;
+//    int sec = globals.secs;
+////    int day = 0;
+////    int hour = 0;
+////    int minute = 0;
+////    int sec = 0;
+//    return Container(
+//      child: Row(
+//        children: [
+//          Column(
+//            mainAxisAlignment: MainAxisAlignment.center,
+//            crossAxisAlignment: CrossAxisAlignment.center,
+//            children: [
+//              Text(
+//                '$day :',
+//                style: TextStyle(
+//                  fontSize: 34,
+//                ),
+//              ),
+//              Text(
+//                'days',
+//                style: TextStyle(
+//                  fontSize: 9,
+//                ),
+//              ),
+//            ],
+//          ),
+//          Divider(
+//            thickness: 2.0,
+//          ),
+//          Column(
+//            mainAxisAlignment: MainAxisAlignment.center,
+//            crossAxisAlignment: CrossAxisAlignment.center,
+//            children: [
+//              Text(
+//                ' $hour :',
+//                style: TextStyle(
+//                  fontSize: 34,
+//                ),
+//              ),
+//              Text(
+//                'hours',
+//                style: TextStyle(
+//                  fontSize: 9,
+//                ),
+//              ),
+//            ],
+//          ),
+//          Divider(
+//            thickness: 2.0,
+//          ),
+//          Column(
+//            mainAxisAlignment: MainAxisAlignment.center,
+//            crossAxisAlignment: CrossAxisAlignment.center,
+//            children: [
+//              Text(
+//                ' $minute :',
+//                style: TextStyle(
+//                  fontSize: 34,
+//                ),
+//              ),
+//              Text(
+//                'minutes',
+//                style: TextStyle(
+//                  fontSize: 9,
+//                ),
+//              ),
+//            ],
+//          ),
+//          Divider(
+//            thickness: 2.0,
+//          ),
+//          Column(
+//            mainAxisAlignment: MainAxisAlignment.center,
+//            crossAxisAlignment: CrossAxisAlignment.center,
+//            children: [
+//              Text(
+//                ' $sec',
+//                style: TextStyle(
+//                  fontSize: 34,
+//                ),
+//              ),
+//              Text(
+//                ' seconds',
+//                style: TextStyle(
+//                  fontSize: 9,
+//                ),
+//              ),
+//            ],
+//          ),
+//          Divider(),
+//        ],
+//      ),
+//    );
+//  }
 
   @override
   Widget build(BuildContext context) {
