@@ -1073,7 +1073,7 @@ class leaderCard extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      height: message.length <= 20 ? 200.0 : message.length/4.0,
+      height: message.length <= 20 ? 200.0 : 120.0 + message.length/4.0,
       child: Card(
         child: Padding(
           padding: const EdgeInsets.only(top: 16.0, bottom: 16.0, right: 16.0),
