@@ -1089,7 +1089,7 @@ class leaderCard extends StatelessWidget{
                         //fit: BoxFit.fill,
                         image: new NetworkImage(link),
                       )
-                  )
+                  ),
               ),
               Divider(),
               SizedBox(
