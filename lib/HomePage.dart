@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:zoom_widget/zoom_widget.dart';
 import 'package:youthlaw/HomeContentDesktop.dart';
 import 'package:youthlaw/HomeContentMobile.dart';
 import 'package:youthlaw/NavigationDrawer.dart';
