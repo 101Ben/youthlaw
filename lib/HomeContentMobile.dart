@@ -1060,6 +1060,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
 
 class leaderCard extends StatelessWidget{
 
+  double size = 120.0;
   String link;
   String name;
   String message;
@@ -1073,15 +1074,15 @@ class leaderCard extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      height: message.length <= 20 ? 200.0 : 120.0 + message.length/4.0,
+      height: message.length <= 20 ? 200.0 : size + message.length/4.0,
       child: Card(
         child: Padding(
           padding: const EdgeInsets.only(top: 16.0, bottom: 16.0, right: 16.0),
           child: ListView(
             children: <Widget>[
               Container(
-                  width: 120.0,
-                  height: 120.0,
+                  width: size,
+                  height: size,
                   decoration: new BoxDecoration(
                       shape: BoxShape.circle,
                       image: new DecorationImage(
