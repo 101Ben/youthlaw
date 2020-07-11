@@ -36,17 +36,17 @@ class NavigationBarState extends State<NavigationBar> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              NavigationBarButton('Home',1, MaterialPageRoute(builder: (context) => HomePage())),
+              NavigationBarButton('Home',1, MaterialPageRoute(builder: (context) => HomePage()), 0),
               Divider(),
-              NavigationBarButton('Information', 2, MaterialPageRoute(builder: (context) => HomePage())),
+              NavigationBarButton('Information', 2, MaterialPageRoute(builder: (context) => HomePage()), 0),
               Divider(),
-              NavigationBarButton('Annual Forum', 3,  MaterialPageRoute(builder: (context) => HomePage())),
+              NavigationBarButton('Annual Forum', 3,  MaterialPageRoute(builder: (context) => HomePage()), 0),
               Divider(),
-              NavigationBarButton('Founders', 4,  MaterialPageRoute(builder: (context) => HomePage())),
+              NavigationBarButton('Founders', 4,  MaterialPageRoute(builder: (context) => HomePage()), 0),
               Divider(),
-              NavigationBarButton('Sponsors', 5,  MaterialPageRoute(builder: (context) => HomePage())),
+              NavigationBarButton('Sponsors', 5,  MaterialPageRoute(builder: (context) => HomePage()), 0),
               Divider(),
-              NavigationBarButton('Gallery', 6,  MaterialPageRoute(builder: (context) => HomePage())),
+              NavigationBarButton('Gallery', 6,  MaterialPageRoute(builder: (context) => HomePage()), 0),
               Divider(),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 12),

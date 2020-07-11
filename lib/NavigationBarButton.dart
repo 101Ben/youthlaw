@@ -6,23 +6,27 @@ class NavigationBarButton extends StatefulWidget{
   String txt;
   Route route;
   int pageNum;
-  NavigationBarButton(String t, int num, Route r){
+  int isMobile;
+  NavigationBarButton(String t, int num, Route r, int mobile){
     txt = t;
     route = r;
     pageNum = num;
+    isMobile = mobile;
   }
   @override
-  NavigationBarButtonState createState() => NavigationBarButtonState(txt, pageNum, route);
+  NavigationBarButtonState createState() => NavigationBarButtonState(txt, pageNum, route, isMobile);
 }
 
 class NavigationBarButtonState extends State<NavigationBarButton> {
   String txt;
   Route route;
   int pageNum;
-  NavigationBarButtonState(String t, int num, Route r) {
+  int isMobile;
+  NavigationBarButtonState(String t, int num, Route r, int mobile) {
     txt = t;
     route = r;
     pageNum = num;
+    isMobile = mobile;
   }
 
   @override
@@ -48,6 +52,7 @@ class NavigationBarButtonState extends State<NavigationBarButton> {
         onPressed: () {
           setState(() {
             globals.currentPage = pageNum;
+            if (isMobile == 1) Navigator.of(context).pop();
           });
           //Navigator.push(context, route);
         },
