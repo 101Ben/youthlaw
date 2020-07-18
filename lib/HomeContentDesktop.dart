@@ -14,6 +14,7 @@ import 'package:youthlaw/PictureInfo.dart';
 import 'package:youthlaw/globals.dart' as globals;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
+import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 
 
 class HomeContentDesktop extends StatefulWidget {
@@ -88,7 +89,6 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
 //      });
 //    });
 //  }
-
 
   Widget PageContent;
 
@@ -344,7 +344,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
         ),
         margin: const EdgeInsets.all(12),
         child: Image.network(
-            'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleOne.png'),
+            'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleOne.png', fit: BoxFit.fill,),
       ),
       Container(
         decoration: BoxDecoration(
@@ -352,7 +352,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
         ),
         margin: const EdgeInsets.all(12),
         child: Image.network(
-            'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleTwo.png'),
+            'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleTwo.png', fit: BoxFit.fill,),
       ),
     ],
   );
@@ -414,44 +414,44 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
                     setState(() {
                       contentImage = Column(
                         children: <Widget>[
-                          GestureDetector(
-                            onScaleStart: (ScaleStartDetails details) {
-                              print(details);
-                              _previousScale = _scale;
-                              setState(() {});
-                            },
-                            onScaleUpdate: (ScaleUpdateDetails details) {
-                              print(details);
-                              _scale = _previousScale * details.scale;
-                              setState(() {});
-                            },
-                            onScaleEnd: (ScaleEndDetails details) {
-                              print(details);
-
-                              _previousScale = 1.0;
-                              setState(() {});
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                              ),
-                              margin: const EdgeInsets.all(12),
-                              child: Transform(
-                                alignment: FractionalOffset.center,
-                                transform: Matrix4.diagonal3(Vector3(_scale, _scale, _scale)),
-                                child: Image.network(
-                                    'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleOne.png'),
-                              ),
-                            ),
+//                          GestureDetector(
+//                            onScaleStart: (ScaleStartDetails details) {
+//                              print(details);
+//                              _previousScale = _scale;
+//                              setState(() {});
+//                            },
+//                            onScaleUpdate: (ScaleUpdateDetails details) {
+//                              print(details);
+//                              _scale = _previousScale * details.scale;
+//                              setState(() {});
+//                            },
+//                            onScaleEnd: (ScaleEndDetails details) {
+//                              print(details);
+//
+//                              _previousScale = 1.0;
+//                              setState(() {});
+//                            },
+//                            child: Container(
+//                              decoration: BoxDecoration(
+//                                shape: BoxShape.rectangle,
+//                              ),
+//                              margin: const EdgeInsets.all(12),
+//                              child: Transform(
+//                                alignment: FractionalOffset.center,
+//                                transform: Matrix4.diagonal3(Vector3(_scale, _scale, _scale)),
+//                                child: Image.network(
+//                                    'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleOne.png'),
+//                              ),
+//                            ),
+//                          ),
+                          Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
                           ),
-//                          Container(
-//                          decoration: BoxDecoration(
-//                            shape: BoxShape.rectangle,
-//                          ),
-//                            margin: const EdgeInsets.all(12),
-//                            child: Image.network(
-//                          'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleOne.png'),
-//                          ),
+                            margin: const EdgeInsets.all(12),
+                            child: Image.network(
+                          'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleOne.png', fit: BoxFit.fill,),
+                          ),
                           Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
@@ -539,8 +539,8 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
                   decoration: TextDecoration.underline,
                 ),),
               onPressed: (){
-                downloadFile('https://github.com/YouthandLaw/YLFContent/raw/master/ylf%202020%20schedule.pdf');
-              },
+                _launchDownloadSchedule();
+                },
             ),
             SizedBox(
               height: 200.0,
@@ -550,6 +550,15 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
         ),
       ),
     );
+  }
+
+  _launchDownloadSchedule() async {
+    const url = 'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/ylf%202020%20schedule.pdf';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   _launchURL() async {
