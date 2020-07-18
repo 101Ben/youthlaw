@@ -94,7 +94,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
 
   List<MenuInfo> _Menu = List<MenuInfo>();
   Future<List<MenuInfo>> fetchMenuInfo() async {
-    var url = 'https://raw.githubusercontent.com/101Ben/YLFContent/master/contentJson/homeMessage.json';
+    var url = 'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/contentJson/homeMessage.json';
     var response = await http.get(url);
 
     var cards = List<MenuInfo>();
@@ -110,7 +110,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
 
   List<PicInfo> _pictures = List<PicInfo>();
   Future<List<PicInfo>> fetchPicInfo() async {
-    var url = 'https://raw.githubusercontent.com/101Ben/YLFContent/master/contentJson/galleryLink.json';
+    var url = 'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/contentJson/galleryLink.json';
     var response = await http.get(url);
 
     var cards = List<PicInfo>();
@@ -126,7 +126,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
 
   List<PeopleInfo> _people = List<PeopleInfo>();
   Future<List<PeopleInfo>> fetchPeopleInfo() async {
-    var url = 'https://raw.githubusercontent.com/101Ben/YLFContent/master/contentJson/peopleBio.json';
+    var url = 'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/contentJson/peopleBio.json';
     var response = await http.get(url);
     var cards = List<PeopleInfo>();
     if (response.statusCode == 200){
@@ -212,7 +212,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
                 ),
                 //margin: const EdgeInsets.all(12),
                 child: Image.network(
-                    'https://raw.githubusercontent.com/101Ben/YLFContent/master/front.png',
+                    'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/front.png',
                 fit: BoxFit.cover,),
               ),
               Padding(
@@ -252,7 +252,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
                 ),
                 margin: const EdgeInsets.all(22),
                 child: Image.network(
-                    'https://raw.githubusercontent.com/101Ben/YLFContent/master/banner.png',
+                    'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/banner.png',
                 fit: BoxFit.fill,width: 400, height: 400, semanticLabel: "2020 Forum",),
               ),
               Expanded(
@@ -344,7 +344,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
         ),
         margin: const EdgeInsets.all(12),
         child: Image.network(
-            'https://raw.githubusercontent.com/101Ben/YLFContent/master/assetslogo/scheduleOne.png'),
+            'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleOne.png'),
       ),
       Container(
         decoration: BoxDecoration(
@@ -352,7 +352,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
         ),
         margin: const EdgeInsets.all(12),
         child: Image.network(
-            'https://raw.githubusercontent.com/101Ben/YLFContent/master/assetslogo/scheduleTwo.png'),
+            'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleTwo.png'),
       ),
     ],
   );
@@ -440,7 +440,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
                                 alignment: FractionalOffset.center,
                                 transform: Matrix4.diagonal3(Vector3(_scale, _scale, _scale)),
                                 child: Image.network(
-                                    'https://raw.githubusercontent.com/101Ben/YLFContent/master/assetslogo/scheduleOne.png'),
+                                    'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleOne.png'),
                               ),
                             ),
                           ),
@@ -450,7 +450,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
 //                          ),
 //                            margin: const EdgeInsets.all(12),
 //                            child: Image.network(
-//                          'https://raw.githubusercontent.com/101Ben/YLFContent/master/assetslogo/scheduleOne.png'),
+//                          'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleOne.png'),
 //                          ),
                           Container(
                             decoration: BoxDecoration(
@@ -458,7 +458,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
                             ),
                             margin: const EdgeInsets.all(12),
                             child: Image.network(
-                                'https://raw.githubusercontent.com/101Ben/YLFContent/master/assetslogo/scheduleTwo.png',
+                                'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleTwo.png',
                             fit: BoxFit.fill,),
                           ),
                         ],
@@ -539,7 +539,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
                   decoration: TextDecoration.underline,
                 ),),
               onPressed: (){
-                downloadFile('https://github.com/101Ben/YLFContent/raw/master/ylf%202020%20schedule.pdf');
+                downloadFile('https://github.com/YouthandLaw/YLFContent/raw/master/ylf%202020%20schedule.pdf');
               },
             ),
             SizedBox(
@@ -828,7 +828,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
           ),
           //margin: const EdgeInsets.all(12),
           child: Image.network(
-            'https://raw.githubusercontent.com/101Ben/YLFContent/master/front.png',
+            'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/front.png',
             fit: BoxFit.cover,),
         ),
         Column(
@@ -1170,7 +1170,7 @@ class BottomPage extends StatelessWidget{
                   ),
                   margin: const EdgeInsets.all(1.0),
                   child: Image.network(
-                      'https://raw.githubusercontent.com/101Ben/YLFContent/master/faceIcon.png', fit: BoxFit.fill),
+                      'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/faceIcon.png', fit: BoxFit.fill),
                 ),
                 onPressed: _launchFaceBookURL, /// provide facebook link
               ),
@@ -1183,7 +1183,7 @@ class BottomPage extends StatelessWidget{
                   ),
                   margin: const EdgeInsets.all(1.0),
                   child: Image.network(
-                      'https://raw.githubusercontent.com/101Ben/YLFContent/master/twittweIcon.png', fit: BoxFit.fill),
+                      'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/twittweIcon.png', fit: BoxFit.fill),
                 ),
                 onPressed: _launchTweetURL, /// provide twitter link
               ),
@@ -1196,7 +1196,7 @@ class BottomPage extends StatelessWidget{
                   ),
                   margin: const EdgeInsets.all(1.0),
                   child: Image.network(
-                      'https://raw.githubusercontent.com/101Ben/YLFContent/master/InstaIcon.png', fit: BoxFit.fill),
+                      'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/InstaIcon.png', fit: BoxFit.fill),
                 ),
                 onPressed: _launchInstaURL, /// provide instagram link
               ),

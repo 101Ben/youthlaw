@@ -545,7 +545,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
                   decoration: TextDecoration.underline,
                 ),),
               onPressed: (){
-                downloadFile('https://github.com/101Ben/YLFContent/raw/master/ylf%202020%20schedule.pdf');
+                downloadFile('https://github.com/YouthandLaw/YLFContent/raw/master/ylf%202020%20schedule.pdf');
               },
             ),
             SizedBox(
