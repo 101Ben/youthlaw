@@ -1154,7 +1154,7 @@ class BottomPageMobile extends StatelessWidget{
             textAlign: TextAlign.center,
           ),
           SelectableText(
-            'email: ...@youthandlaw.com\n',
+            'email: 	youthandlawforum@gmail.com\n',
             style: TextStyle(
               fontWeight: FontWeight.w200,
               fontStyle: FontStyle.italic,
