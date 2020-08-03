@@ -6,6 +6,7 @@ import 'dart:core';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youthlaw/HomePage.dart';
+import 'package:youthlaw/Images/Logo.dart';
 import 'package:youthlaw/PeopleInfo.dart';
 import 'package:youthlaw/globals.dart' as globals;
 import 'dart:html' as html;
@@ -133,46 +134,23 @@ class HomeContentMobileState extends State<HomeContentMobile> {
     return cards;
   }
 
+  List<Logo> _logo = List<Logo>();
+  Future<List<Logo>> fetchLogoInfo() async {
+    var url =
+        'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/contentJson/logos.json';
+    var response = await http.get(url);
+    var cards = List<Logo>();
+    if (response.statusCode == 200) {
+      var cardsJson = json.decode(response.body);
+      for (var cardJson in cardsJson) {
+        cards.add(Logo.fromJson(cardJson));
+      }
+    }
+    return cards;
+  }
+
   @override
   void initState(){
-//    _startTimerMobile();
-//    fetchMenuInfo().then((value){
-//      setState(() {
-//        _Menu.addAll(value);
-//        switch(globals.currentPage){
-//          case 1:
-//            {
-//              PageContent = homeLink();
-//            }
-//            break;
-//          case 2:
-//            {
-//              PageContent = infoLink();
-//            }
-//            break;
-//          case 3:
-//            {
-//              PageContent = forumLink();
-//            }
-//            break;
-//          case 4:
-//            {
-//              PageContent = historyLink();
-//            }
-//            break;
-//          case 5:
-//            {
-//              PageContent = sponsorsLink();
-//            }
-//            break;
-//          default:
-//            {
-//              PageContent = galleryLink();
-//            }
-//            break;
-//        }
-//      });
-//    });
     fetchPicInfo().then((entry){
       setState(() {
         _pictures.addAll(entry);
@@ -181,6 +159,11 @@ class HomeContentMobileState extends State<HomeContentMobile> {
     fetchPeopleInfo().then((people){
       setState(() {
         _people.addAll(people);
+      });
+    });
+    fetchLogoInfo().then((logos) {
+      setState(() {
+        _logo.addAll(logos);
       });
     });
     super.initState();
@@ -239,7 +222,10 @@ class HomeContentMobileState extends State<HomeContentMobile> {
                   fontStyle: FontStyle.italic,
                   fontSize: 22
               ),),
-            onPressed:  _launchDonateURL,
+//            onPressed:  _launchDonateURL,
+          onPressed: (){
+            Navigator.pushNamed(context, '/donate');
+          },
           ),
           Padding(
             padding: EdgeInsets.only(top: 32.0, left: 12.0, bottom: 22.0),
@@ -681,14 +667,27 @@ class HomeContentMobileState extends State<HomeContentMobile> {
             children: <Widget>[
               header("Our Sponsors"),
               Divider(),
-              for (var i = 0; i < logo.length; i++) Container(
-                width: 300.0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
+              for (var i = 0; i < logo.length; i++)
+                Container(
+                    child: Column(
+                        children:[
+                          Container(
+                              width: 300.0,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.rectangle,
+                              ),
+                              margin: const EdgeInsets.all(12),
+                              child: Image.network(_logo[i].link, fit: BoxFit.cover)),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 18.0),
+                            child: SelectableText(_logo[i].text, style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18
+                            ),),
+                          ),
+                        ]
+                    )
                 ),
-                margin: const EdgeInsets.all(12),
-                child: Image.network(logo[i], fit: BoxFit.fill),
-              ),
 //              Container(
 //                height: 800.0,
 //                color: Colors.grey,
@@ -1134,7 +1133,7 @@ class BottomPageMobile extends StatelessWidget{
     // TODO: implement build
     return Container(
       padding: EdgeInsets.only(top: 18.0, left: 40.0, right: 40.0),
-      color: Colors.grey,
+      color: Colors.blueAccent,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -1143,6 +1142,7 @@ class BottomPageMobile extends StatelessWidget{
             "Contact information\n",
             style: TextStyle(
               decoration: TextDecoration.underline,
+              fontWeight: FontWeight.bold,
             ),
           ),
           SelectableText(
@@ -1154,7 +1154,7 @@ class BottomPageMobile extends StatelessWidget{
             textAlign: TextAlign.center,
           ),
           SelectableText(
-            'email: 	youthandlawforum@gmail.com\n',
+            'email: youthandlawforum@gmail.com\n',
             style: TextStyle(
               fontWeight: FontWeight.w200,
               fontStyle: FontStyle.italic,
@@ -1162,7 +1162,7 @@ class BottomPageMobile extends StatelessWidget{
             textAlign: TextAlign.center,
           ),
           SelectableText(
-            'Address: 1522 14th Ave,\nSeattle, WA\n98122\n',
+            'Address: MLK FAME Community Center\n3201 E Republican Street,\nSeattle, WA\n98112\n',
             style: TextStyle(
               fontWeight: FontWeight.w200,
               fontStyle: FontStyle.italic,
@@ -1174,6 +1174,7 @@ class BottomPageMobile extends StatelessWidget{
             "Connect on Social Media",
             style: TextStyle(
               decoration: TextDecoration.underline,
+              fontWeight: FontWeight.bold,
             ),
           ),
           FlatButton(

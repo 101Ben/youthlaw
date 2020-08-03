@@ -62,7 +62,10 @@ class NavigationBarState extends State<NavigationBar> {
                         fontSize: 22
                     ),
                   ),
-                  onPressed:  _launchURL,
+//                  onPressed:  _launchURL,
+                onPressed: (){
+                  Navigator.pushNamed(context, '/donate');
+                },
                 ),
               ),
               Divider(),
