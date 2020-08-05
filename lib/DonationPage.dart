@@ -87,29 +87,17 @@ class Donatecard extends StatelessWidget{
                 child: Image.network(
                     this.logoLink, fit: BoxFit.cover),
               ),
-//              Container(
-//                  width: 80.0,
-//                  height: 80.0,
-//                  decoration: new BoxDecoration(
-//                      shape: BoxShape.circle,
-//                      image: new DecorationImage(
-//                        //fit: BoxFit.fill,
-//                          image: new NetworkImage(this.logoLink)  // "/Users/benajasandrain/FlavrFood/assets/userPic.png"
-//                      )
-//                  )
-//              ),
-
               Expanded(
                 child: SizedBox(
                   child: ListTile(
-                    title: Text(
+                    title: SelectableText(
                       this.message ,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
                       ),),
-                    subtitle: Text(
+                    subtitle: SelectableText(
                         this.subMessage,
                         textAlign: TextAlign.center,
                         style: TextStyle(

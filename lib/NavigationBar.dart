@@ -40,6 +40,27 @@ class NavigationBarState extends State<NavigationBar> {
               Divider(),
               NavigationBarButton('Information', 2, MaterialPageRoute(builder: (context) => HomePage()), 0),
               Divider(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                child: FlatButton(
+                  hoverColor: Colors.grey,
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(12)
+                  ),
+                  child: Text(
+                    "Registration",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  onPressed:  _launchURL
+                  ,
+                ),
+              ),
+              Divider(),
               NavigationBarButton('Annual Forum', 3,  MaterialPageRoute(builder: (context) => HomePage()), 0),
               Divider(),
               NavigationBarButton('Founders', 4,  MaterialPageRoute(builder: (context) => HomePage()), 0),
@@ -62,7 +83,6 @@ class NavigationBarState extends State<NavigationBar> {
                         fontSize: 22
                     ),
                   ),
-//                  onPressed:  _launchURL,
                 onPressed: (){
                   Navigator.pushNamed(context, '/donate');
                 },
@@ -80,7 +100,7 @@ class NavigationBarState extends State<NavigationBar> {
   }
 
   _launchURL() async {
-    const url = 'https://www.facebook.com/youthandlaw/';
+    const url = 'https://forms.gle/n6EQ8fP3L9TtBLN67';
     if (await canLaunch(url)) {
       await launch(url);
     } else {

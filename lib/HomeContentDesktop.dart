@@ -12,6 +12,8 @@ import 'dart:core';
 import 'package:http/http.dart' as http;
 import 'package:youthlaw/PeopleInfo.dart';
 import 'package:youthlaw/PictureInfo.dart';
+import 'package:youthlaw/Schedule/Schedule.dart';
+import 'package:youthlaw/Schedule/ScheduleCard.dart';
 import 'package:youthlaw/globals.dart' as globals;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
@@ -161,6 +163,21 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
     return cards;
   }
 
+
+  List<Schedule> _schedule = List<Schedule>();
+  Future<List<Schedule>> fetchSchedule() async {
+    var url = 'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/contentJson/Schedules.json';
+    var response = await http.get(url);
+    var cards = List<Schedule>();
+    if (response.statusCode == 200){
+      var cardsJson = json.decode(response.body);
+      for (var cardJson in cardsJson) {
+        cards.add(Schedule.fromJson(cardJson));
+      }
+    }
+    return cards;
+  }
+
   @override
   void initState() {
     fetchPeopleInfo().then((people) {
@@ -178,6 +195,11 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
         _logo.addAll(logos);
       });
     });
+    fetchSchedule().then((schedule) {
+      setState(() {
+        _schedule.addAll(schedule);
+      });
+    });
     super.initState();
   }
 
@@ -191,31 +213,46 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
     return Container(
       child: Column(
         children: <Widget>[
+          Container(
+            width: double.infinity,
+            height: 280.0,
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+            ),
+            //margin: const EdgeInsets.all(12),
+            child: Image.network(
+              'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
+              fit: BoxFit.fill,
+            ),
+          ),
           Stack(
             children: <Widget>[
-              Container(
-                width: double.infinity,
-                height: 200.0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                ),
-                //margin: const EdgeInsets.all(12),
-                child: Image.network(
-                  'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/front.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
+//              Container(
+//                width: double.infinity,
+//                height: 200.0,
+//                decoration: BoxDecoration(
+//                  shape: BoxShape.rectangle,
+//                ),
+//                //margin: const EdgeInsets.all(12),
+//                child: Image.network(
+//                  'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
+//                  fit: BoxFit.cover,
+//                ),
+//              ),
               Padding(
                 padding: EdgeInsets.only(left: 12.0),
                 child: Center(
-                  child: Text(
-                    "Youth & Law Forum\nSeattle",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontStyle: FontStyle.italic,
-                      fontSize: 80,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 12.0),
+                    child: Text(
+                      "Judge Charles V. Johnson Youth & Law Forum",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontStyle: FontStyle.italic,
+                        fontSize: 64,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
@@ -298,6 +335,18 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
       child: Center(
           child: Column(
         children: <Widget>[
+          Container(
+            width: double.infinity,
+            height: 240.0,
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+            ),
+            //margin: const EdgeInsets.all(12),
+            child: Image.network(
+              'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
+              fit: BoxFit.fill,
+            ),
+          ),
           header("Information"),
           Divider(),
           Text(
@@ -314,8 +363,39 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
               ),
             ),
           ),
+          Divider(),
+          SelectableText(
+            "Objectives",
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
+          ),
           SizedBox(
-            height: 1000.0,
+            child: Padding(
+              padding:
+              EdgeInsets.symmetric(vertical: 32.0, horizontal: 128.0),
+              child: SelectableText(
+                globals.objectives,
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          ),
+          Divider(),
+          SelectableText(
+            "History",
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
+          ),
+          SizedBox(
+            child: Padding(
+              padding:
+              EdgeInsets.symmetric(vertical: 32.0, horizontal: 128.0),
+              child: SelectableText(
+                globals.history,
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          ),
+          Divider(),
+          SizedBox(
+            height: 300.0,
           ),
           BottomPage(),
         ],
@@ -323,30 +403,31 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
     );
   }
 
-  Widget contentImage = Column(
-    children: <Widget>[
-      Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.rectangle,
-        ),
-        margin: const EdgeInsets.all(12),
-        child: Image.network(
-          'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleOne.png',
-          fit: BoxFit.fill,
-        ),
-      ),
-      Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.rectangle,
-        ),
-        margin: const EdgeInsets.all(12),
-        child: Image.network(
-          'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleTwo.png',
-          fit: BoxFit.fill,
-        ),
-      ),
-    ],
-  );
+//  Widget contentImage = Column(
+//    children: <Widget>[
+//      Container(
+//        decoration: BoxDecoration(
+//          shape: BoxShape.rectangle,
+//        ),
+//        margin: const EdgeInsets.all(12),
+//        child: Image.network(
+//          'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleOne.png',
+//          fit: BoxFit.fill,
+//        ),
+//      ),
+//      Container(
+//        decoration: BoxDecoration(
+//          shape: BoxShape.rectangle,
+//        ),
+//        margin: const EdgeInsets.all(12),
+//        child: Image.network(
+//          'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleTwo.png',
+//          fit: BoxFit.fill,
+//        ),
+//      ),
+//    ],
+//  );
+
 
   Widget forumLink() {
     List<PeopleInfo> _speakers = List<PeopleInfo>();
@@ -355,13 +436,24 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
         _speakers.add(temp);
       }
     }
-    double _scale = 1.0;
-    double _previousScale = 1.0;
+
     return Container(
       child: Center(
         child: Column(
           children: [
-            header("The Power in Each of us a Flame"),
+            Container(
+              width: double.infinity,
+              height: 240.0,
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+              ),
+              //margin: const EdgeInsets.all(12),
+              child: Image.network(
+                'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
+                fit: BoxFit.fill,
+              ),
+            ),
+            header("The Power of One: In Each of Us a Flame"),
             Divider(),
             Container(
               width: 400,
@@ -389,137 +481,131 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                FlatButton(
-                  hoverColor: Colors.grey,
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(12)),
-                  child: Text(
-                    "Schedule",
-                    style: TextStyle(
-                      fontSize: 20,
-                      decoration: TextDecoration.underline,
-                    ),
+                Text(
+                  "Schedule",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontStyle: FontStyle.italic,
+                    decoration: TextDecoration.underline,
                   ),
-                  onPressed: () {
-                    setState(() {
-                      contentImage = Column(
-                        children: <Widget>[
-//                          GestureDetector(
-//                            onScaleStart: (ScaleStartDetails details) {
-//                              print(details);
-//                              _previousScale = _scale;
-//                              setState(() {});
-//                            },
-//                            onScaleUpdate: (ScaleUpdateDetails details) {
-//                              print(details);
-//                              _scale = _previousScale * details.scale;
-//                              setState(() {});
-//                            },
-//                            onScaleEnd: (ScaleEndDetails details) {
-//                              print(details);
-//
-//                              _previousScale = 1.0;
-//                              setState(() {});
-//                            },
-//                            child: Container(
-//                              decoration: BoxDecoration(
-//                                shape: BoxShape.rectangle,
-//                              ),
-//                              margin: const EdgeInsets.all(12),
-//                              child: Transform(
-//                                alignment: FractionalOffset.center,
-//                                transform: Matrix4.diagonal3(Vector3(_scale, _scale, _scale)),
-//                                child: Image.network(
-//                                    'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleOne.png'),
-//                              ),
-//                            ),
-//                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                            ),
-                            margin: const EdgeInsets.all(12),
-                            child: Image.network(
-                              'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleOne.png',
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                            ),
-                            margin: const EdgeInsets.all(12),
-                            child: Image.network(
-                              'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleTwo.png',
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        ],
-                      );
-                    });
-                    build(context);
-                  },
                 ),
-                FlatButton(
-                  hoverColor: Colors.grey,
-//                  color: Colors.greenAccent,
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(12)),
-                  child: Text(
-                    "Register HERE",
-                    style: TextStyle(
-                      fontSize: 20,
-                      decoration: TextDecoration.underline,
-                      color: Colors.orangeAccent,
-                    ),
-                  ),
-                  onPressed: _launchURL,
-                ),
-                FlatButton(
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(12)),
-                  hoverColor: Colors.grey,
-                  child: Text(
-                    "Speaker Bio",
-                    style: TextStyle(
-                      fontSize: 20,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      contentImage = Container(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 32.0, horizontal: 128.0),
-                        child: Column(
-                          children: [
-                            for (var i = 0; i < _speakers.length; i++)
-                              leaderCard(_speakers[i].link, _speakers[i].name,
-                                  _speakers[i].bio),
-                          ],
-                        ),
-//                        Container(
-//                          height: 540.0,
-//                          child:
-//                          ListView.builder(
-//                            scrollDirection: Axis.vertical,
-//                            itemCount: _speakers.length,
-//                            itemBuilder: (context, index){
-//                              return
-//                                leaderCard(_speakers[index].link, _speakers[index].name, _speakers[index].bio);
-//                            },
-//                          ),
+//                FlatButton(
+//                  hoverColor: Colors.grey,
+//                  shape: new RoundedRectangleBorder(
+//                      borderRadius: new BorderRadius.circular(12)),
+//                  child: Text(
+//                    "Schedule",
+//                    style: TextStyle(
+//                      fontSize: 30,
+//                      fontStyle: FontStyle.italic,
+//                      decoration: TextDecoration.underline,
+//                    ),
+//                  ),
+//                  onPressed: () {
+//                    setState(() {
+//                      contentImage = Column(
+//                        children: <Widget>[
+//                          for(var i = 0; i < _schedule.length; i++)
+//                            ScheduleCard(duration: _schedule[i].duration,
+//                              id: _schedule[i].id, link: _schedule[i].link, location: _schedule[i].location, summary: _schedule[i].summary,
+//                              theme: _schedule[i].theme, time: _schedule[i].time,)
+////                          Container(
+////                            decoration: BoxDecoration(
+////                              shape: BoxShape.rectangle,
+////                            ),
+////                            margin: const EdgeInsets.all(12),
+////                            child: Image.network(
+////                              'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleOne.png',
+////                              fit: BoxFit.fill,
+////                            ),
+////                          ),
+////                          Container(
+////                            decoration: BoxDecoration(
+////                              shape: BoxShape.rectangle,
+////                            ),
+////                            margin: const EdgeInsets.all(12),
+////                            child: Image.network(
+////                              'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleTwo.png',
+////                              fit: BoxFit.fill,
+////                            ),
+////                          ),
+//                        ],
+//                      );
+//                    });
+//                    build(context);
+//                  },
+//                ),
+//                FlatButton(
+//                  hoverColor: Colors.grey,
+//                    color: Colors.greenAccent,
+//                  shape: new RoundedRectangleBorder(
+//                      borderRadius: new BorderRadius.circular(12)),
+//                  child: Text(
+//                    "Register HERE",
+//                    style: TextStyle(
+//                      fontSize: 20,
+//                      decoration: TextDecoration.underline,
+//                      color: Colors.orangeAccent,
+//                    ),
+//                  ),
+//                  onPressed: _launchURL,
+//                ),
+//                FlatButton(
+//                  shape: new RoundedRectangleBorder(
+//                      borderRadius: new BorderRadius.circular(12)),
+//                  hoverColor: Colors.grey,
+//                  child: Text(
+//                    "Speaker Bio",
+//                    style: TextStyle(
+//                      fontSize: 20,
+//                      decoration: TextDecoration.underline,
+//                    ),
+//                  ),
+//                  onPressed: () {
+//                    setState(() {
+//                      contentImage = Container(
+//                        padding: EdgeInsets.symmetric(
+//                            vertical: 32.0, horizontal: 128.0),
+//                        child: Column(
+//                          children: [
+//                            for (var i = 0; i < _speakers.length; i++)
+//                              leaderCard(_speakers[i].link, _speakers[i].name,
+//                                  _speakers[i].bio),
+//                          ],
 //                        ),
-                      );
-                    });
-                    build(context);
-                  },
-                ),
+//                      );
+//                    });
+//                    build(context);
+//                  },
+//                ),
               ],
             ),
             Divider(),
             Container(
-              child: contentImage,
+              child: Column(
+                        children: <Widget>[
+                          for(var i = 0; i < _schedule.length; i++)
+//                            for (var temp in _schedule)
+//                              if (temp.id == i.toString())
+//                                Container(
+//                                  height: 420,
+//                                  child: ListView.builder(
+//                                    scrollDirection: Axis.horizontal,
+//                                    itemCount: 2,
+//                                    itemBuilder: (context, index){
+//                                      return
+//                                        ScheduleCard(duration: temp.duration,
+//                                          id: temp.id, link: temp.link, location: temp.location, summary: temp.summary,
+//                                          theme: temp.theme, time: temp.time, context: context,);
+//                                    },
+//                                  ),
+//                                ),
+
+                            ScheduleCard(duration: _schedule[i].duration,
+                              id: _schedule[i].id, link: _schedule[i].link, location: _schedule[i].location, summary: _schedule[i].summary,
+                              theme: _schedule[i].theme, time: _schedule[i].time, context: context,),
+                        ]
+              ),
             ),
             FlatButton(
               child: Text(
@@ -576,42 +662,20 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
       child: Center(
         child: Column(
           children: <Widget>[
-            header("Leader Board"),
-            Divider(),
-            SelectableText(
-              "Objectives",
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
-            ),
-            SizedBox(
-              child: Padding(
-                padding:
-                    EdgeInsets.symmetric(vertical: 32.0, horizontal: 128.0),
-                child: SelectableText(
-                  globals.objectives,
-                  style: TextStyle(fontSize: 20),
-                ),
+            Container(
+              width: double.infinity,
+              height: 240.0,
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+              ),
+              //margin: const EdgeInsets.all(12),
+              child: Image.network(
+                'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
+                fit: BoxFit.fill,
               ),
             ),
+            header("Founders"),
             Divider(),
-            SelectableText(
-              "History",
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
-            ),
-            SizedBox(
-              child: Padding(
-                padding:
-                    EdgeInsets.symmetric(vertical: 32.0, horizontal: 128.0),
-                child: SelectableText(
-                  globals.history,
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-            ),
-            Divider(),
-            Text(
-              "Leaders",
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
-            ),
             Container(
 //              height: 6000.0,
               padding: EdgeInsets.symmetric(vertical: 32.0, horizontal: 128.0),
@@ -651,6 +715,18 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
       child: Center(
           child: Column(
             children: <Widget>[
+              Container(
+                width: double.infinity,
+                height: 240.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                ),
+                //margin: const EdgeInsets.all(12),
+                child: Image.network(
+                  'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
+                  fit: BoxFit.fill,
+                ),
+              ),
               header("Our Sponsors"),
               Divider(),
               for (var i = 0; i < _logo.length; i++)
@@ -671,32 +747,6 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
                         ]
                     )
                 ),
-
-//              Container(
-//                height: 500.0,
-//                color: Colors.grey,
-//                margin: EdgeInsets.symmetric(horizontal: 18.0),
-//                child: GridView.builder(
-//                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                    crossAxisCount: 6,
-//                    crossAxisSpacing: 5.0,
-//                    mainAxisSpacing: 4.0,
-//                    childAspectRatio: 0.9,
-//                  ),
-//                    itemCount: logo.length,
-//                    itemBuilder: (context, index){
-//                      return Container(
-//                        width: 100.0,
-//                        decoration: BoxDecoration(
-//                          shape: BoxShape.rectangle,
-//                        ),
-//                        margin: const EdgeInsets.all(12),
-//                        child: Image.network(logo[index], fit:BoxFit.fill),
-//                      );
-//                    },
-//                  ),
-//                  //scrollDirection: Axis.vertical,
-//                ),
           SizedBox(
             height: 100.0,
           ),
@@ -722,6 +772,18 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(
+            width: double.infinity,
+            height: 240.0,
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+            ),
+            //margin: const EdgeInsets.all(12),
+            child: Image.network(
+              'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
+              fit: BoxFit.fill,
+            ),
+          ),
           header("Memories and Activities"),
 //          Container(
 //            height: 100.0,
@@ -828,32 +890,23 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
     return Stack(
       alignment: Alignment.topCenter,
       children: <Widget>[
-        Container(
-          width: double.infinity,
-          height: 180.0,
-          decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-          ),
-          //margin: const EdgeInsets.all(12),
-          child: Image.network(
-            'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/front.png',
-            fit: BoxFit.cover,
-          ),
-        ),
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
               padding: EdgeInsets.only(left: 12.0),
               child: Center(
-                child: Text(
-                  "Youth & Law Forum",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontStyle: FontStyle.italic,
-                    fontSize: 80,
+                child: Padding (
+                  padding: EdgeInsets.symmetric(vertical: 18.0),
+                  child: Text(
+                    "Judge Charles V. Johnson Youth & Law Forum",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontStyle: FontStyle.italic,
+                      fontSize: 64,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
             ),
@@ -989,19 +1042,19 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
               child: ListView(
                 //mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
-                    child: Center(
-                      child: SelectableText(
-                        "Judge Charles V. Johnson",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.italic,
-                          fontSize: 38,
-                        ),
-                      ),
-                    ),
-                  ),
+//                  Padding(
+//                    padding: EdgeInsets.symmetric(horizontal: 8),
+//                    child: Center(
+//                      child: SelectableText(
+//                        "Judge Charles V. Johnson",
+//                        style: TextStyle(
+//                          fontWeight: FontWeight.w400,
+//                          fontStyle: FontStyle.italic,
+//                          fontSize: 38,
+//                        ),
+//                      ),
+//                    ),
+//                  ),
                   Container(
                     child: globals.currentPage == 1
                         ? homeLink()
@@ -1084,7 +1137,7 @@ class BottomPage extends StatelessWidget {
     // TODO: implement build
     return Container(
       padding: EdgeInsets.only(top: 18.0, left: 40.0, right: 40.0),
-      color: Colors.blueAccent,
+      color: Colors.blue,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1117,7 +1170,7 @@ class BottomPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SelectableText(
-                'Address: MLK FAME Community Center\n3201 E Republican Street,\nSeattle, WA\n98112\n',
+                'Address: MLK FAME Community Center\n3201 E Republican Street\nSeattle, WA 98112\n',
                 style: TextStyle(
                   fontWeight: FontWeight.w200,
                   fontStyle: FontStyle.italic,
@@ -1191,7 +1244,7 @@ class BottomPage extends StatelessWidget {
             children: [
               SizedBox(),
               Text(
-                "All right reserved • 2020",
+                "All rights reserved • 2020",
                 textAlign: TextAlign.center,
               ),
             ],

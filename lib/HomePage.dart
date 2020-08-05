@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:youthlaw/SpeakerDrawer.dart';
+import 'package:youthlaw/SpeakerDrawerMobile.dart';
 import 'package:zoom_widget/zoom_widget.dart';
 import 'package:youthlaw/HomeContentDesktop.dart';
 import 'package:youthlaw/HomeContentMobile.dart';
@@ -144,6 +146,9 @@ class HomePageState extends State<HomePage> {
           drawer: (sizingInformation.deviceScreenType ==
               DeviceScreenType.mobile) || (sizingInformation.deviceScreenType ==
               DeviceScreenType.tablet)  ? NavigationDrawer() : null,
+          endDrawer: (sizingInformation.deviceScreenType ==
+              DeviceScreenType.mobile) || (sizingInformation.deviceScreenType ==
+              DeviceScreenType.tablet)  ? SpeakerDrawerMobile() : SpeakerDrawer(),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[

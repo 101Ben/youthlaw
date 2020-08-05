@@ -45,6 +45,27 @@ class NavigationDrawerState extends State<NavigationDrawer> {
               Divider(),
               NavigationBarButton('Information', 2, MaterialPageRoute(builder: (context) => HomePage()), 1),
               Divider(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                child: FlatButton(
+                  hoverColor: Colors.grey,
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(12)
+                  ),
+                  child: Text(
+                    "Registration",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  onPressed:  _launchURL
+                  ,
+                ),
+              ),
+              Divider(),
               NavigationBarButton('Annual Forum', 3,  MaterialPageRoute(builder: (context) => HomePage()), 1),
               Divider(),
               NavigationBarButton('Founders', 4,  MaterialPageRoute(builder: (context) => HomePage()), 1),
@@ -83,8 +104,9 @@ class NavigationDrawerState extends State<NavigationDrawer> {
       ),
     );
   }
+
   _launchURL() async {
-    const url = 'https://www.facebook.com/youthandlaw/';
+    const url = 'https://forms.gle/n6EQ8fP3L9TtBLN67';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
