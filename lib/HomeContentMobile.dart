@@ -10,6 +10,9 @@ import 'package:youthlaw/Images/Logo.dart';
 import 'package:youthlaw/PeopleInfo.dart';
 import 'package:youthlaw/Schedule/Schedule.dart';
 import 'package:youthlaw/Schedule/ScheduleCard.dart';
+import 'package:youthlaw/fetch_helper/News.dart';
+import 'package:youthlaw/fetch_helper/NewsCard.dart';
+import 'package:youthlaw/fetch_helper/NewsCardMobile.dart';
 import 'package:youthlaw/globals.dart' as globals;
 import 'dart:html' as html;
 import 'package:youthlaw/HomeInfo.dart';
@@ -100,6 +103,20 @@ class HomeContentMobileState extends State<HomeContentMobile> {
     return cards;
   }
 
+  List<News> _newsList = new List<News>();
+  Future<List<News>> fetchNewsList() async {
+    var url = 'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/NewsLink/NewsInfo.json';
+    var response = await http.get(url);
+    var cards = List<News>();
+    if (response.statusCode == 200) {
+      var cardsJson = json.decode(response.body);
+      for (var cardJson in cardsJson) {
+        cards.add(News.fromJson(cardJson));
+      }
+    }
+    return cards;
+  }
+
   @override
   void initState(){
     fetchPicInfo().then((entry){
@@ -120,6 +137,11 @@ class HomeContentMobileState extends State<HomeContentMobile> {
     fetchSchedule().then((schedule) {
       setState(() {
         _schedule.addAll(schedule);
+      });
+    });
+    fetchNewsList().then((news) {
+      setState(() {
+        _newsList.addAll(news);
       });
     });
     super.initState();
@@ -267,7 +289,44 @@ class HomeContentMobileState extends State<HomeContentMobile> {
             },
           ),
           SizedBox(
-            height: 80.0,
+            height: 50.0,
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 32.0, left: 12.0),
+            child: Text(
+              "News & Articles",
+              style: TextStyle(
+                decoration: TextDecoration.underline,
+                fontSize: 32.0,
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ),
+//          dataList.map((val) => {
+//            _buildPreviewWidget(dataList[i], _newsList[i].link),
+//          })
+          Divider(),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 18.0),
+//            height: 200.0,
+//            child: GridView.builder(
+//                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                  crossAxisCount: 2,
+//                  mainAxisSpacing: 12,
+//                  crossAxisSpacing: 2
+//                ),
+//                itemCount: _newsList.length,
+//                itemBuilder: (BuildContext context, int index){
+//                  return NewsCard( url: _newsList[index].link, picture: _newsList[index].picture,
+//                  message: _newsList[index].message);
+//                }),
+            child: Column(
+              children: [
+                for (int i = 0; i < _newsList.length; i++)
+                  NewsCardMobile ( url: _newsList[i].link, picture: _newsList[i].picture,
+                      message: _newsList[i].message)
+              ],
+            ),
           ),
           BottomPageMobile(),
         ],
@@ -297,8 +356,9 @@ class HomeContentMobileState extends State<HomeContentMobile> {
                 "What is it",
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: 24
+                    fontSize: 24,
                 ),
+                textAlign: TextAlign.center,
               ),
               SizedBox(
                 child: Padding(
@@ -309,6 +369,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
                     style: TextStyle(
                         fontSize: 20
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
@@ -317,7 +378,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
                 "Objectives",
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: 24
+                    fontSize: 24,
                 ),
               ),
               SizedBox(
@@ -328,6 +389,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
                     style: TextStyle(
                         fontSize: 20
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
@@ -347,6 +409,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
                     style: TextStyle(
                         fontSize: 20
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
@@ -390,6 +453,12 @@ class HomeContentMobileState extends State<HomeContentMobile> {
         _speakers.add(temp);
       }
     }
+    List<String> _banner = List<String>();
+
+    for (var temp in _pictures) {
+      if (temp.group == "banner") _banner.add(temp.picLink);
+    }
+
     double _scale = 1.0;
     double _previousScale = 1.0;
     return Container(
@@ -422,32 +491,60 @@ class HomeContentMobileState extends State<HomeContentMobile> {
                 ),
               ),
             ),
-            Divider(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  "Schedule",
-                  style: TextStyle(
-                      fontSize: 20,
-                      decoration: TextDecoration.underline
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 12.0),
+              child: Container(
+                color: Colors.black,
+                child: FlatButton(
+                  onPressed: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(12)),
+                  child: Text(
+                    "Guest Speakers",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-                FlatButton(
-                  hoverColor: Colors.grey,
-                  //color: Colors.greenAccent,
+              ),
+            ),
+
+            Padding(
+              padding:EdgeInsets.symmetric(vertical: 8.0),
+              child: Container(
+                color: Colors.black,
+                child: FlatButton(
+
                   shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(12)
                   ),
                   child: Text(
                     "Register HERE",
                     style: TextStyle(
-                        fontSize: 20,
-                      decoration: TextDecoration.underline,
-                      color: Colors.orangeAccent,
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontStyle: FontStyle.italic,
                     ),
                   ),
                   onPressed: _launchRegisterURL,
+                ),
+              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Padding(
+                  padding:EdgeInsets.symmetric(vertical: 12.0),
+                  child: Text(
+                    "Schedule",
+                    style: TextStyle(
+                        fontSize: 28,
+                    ),
+                  ),
                 ),
 //                FlatButton(
 //                  hoverColor: Colors.grey,
@@ -581,19 +678,69 @@ class HomeContentMobileState extends State<HomeContentMobile> {
                         theme: _schedule[i].theme, time: _schedule[i].time, context: context,),]
               ),
             ),
-            FlatButton(
+
+
+            Padding(
+              padding: EdgeInsets.symmetric (horizontal: 12, vertical: 18.0),
               child: Text(
-                'DownLoad Schedule',
+                "Current and Past Flyers",
                 style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                  fontStyle: FontStyle.italic,
-                  fontSize: 12,
                   decoration: TextDecoration.underline,
-                ),),
-              onPressed: (){
-                _launchDownloadSchedule();              },
+                  fontSize: 24.0,
+                ),
+                textAlign: TextAlign.left,
+              ),
             ),
+            Container(
+              height: 200.0,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: _banner.length,
+                itemBuilder: (context, index){
+                  return
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: 200.0,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                          ),
+                          margin: const EdgeInsets.all(12),
+                          child: Image.network(_banner[index], fit:BoxFit.fill),
+                        ),
+                        RaisedButton(
+                          onPressed: (){
+//                            downloadFile(_banner[index]);
+                            String url = _banner[index];
+                            canLaunch(url).then((val ) =>{
+                              launch(url)
+                            }).catchError(() => {
+                              throw 'Could not launch $url'
+                            });
+                          },
+                          child: Text(
+                              "View"
+                          ),
+                        )
+                      ],
+                    );
+                },
+              ),
+            ),
+//            FlatButton(
+//              child: Text(
+//                'DownLoad Schedule',
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                  fontStyle: FontStyle.italic,
+//                  fontSize: 12,
+//                  decoration: TextDecoration.underline,
+//                ),),
+//              onPressed: (){
+//                _launchDownloadSchedule();              },
+//            ),
             SizedBox(
               height: 140.0,
             ),
@@ -718,7 +865,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
                               child: Image.network(_logo[i].link, fit: BoxFit.cover)),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 18.0),
-                            child: SelectableText(_logo[i].text, style: TextStyle(
+                            child: SelectableText(_logo[i].text, textAlign: TextAlign.center, style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18
                             ),),
@@ -764,11 +911,13 @@ class HomeContentMobileState extends State<HomeContentMobile> {
     List<String> other = List<String>();
     List<String> pic2017 = List<String>();
     List<String> picSeaH = List<String>();
+    List<String> committee = List<String>();
 
     for (var temp in _pictures){
       if (temp.group == "other") other.add(temp.picLink);
       else if (temp.group == "2017") pic2017.add(temp.picLink);
       else if (temp.group == "sea") picSeaH.add(temp.picLink);
+      else if (temp.group == "committee") committee.add(temp.picLink);
     }
     return Container(
       child: Column(
@@ -787,69 +936,44 @@ class HomeContentMobileState extends State<HomeContentMobile> {
           ),
           header("Memories and Activities"),
           Divider(),
-          Text("Youth and Law Forum - Session of 2017", style: TextStyle(fontWeight: FontWeight.bold),),
-          Container(
-            height: 200.0,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: pic2017.length,
-              itemBuilder: (context, index){
-                return
-                  Container(
-                    width: 200.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                    ),
-                    margin: const EdgeInsets.all(12),
-                    child: Image.network(pic2017[index], fit:BoxFit.fill),
-                  );
-              },
-            ),
-          ),
-          Divider(),
-          Text("Youth and Law Forum - Seahawks Traning Camp in 2017", style: TextStyle(fontWeight: FontWeight.bold)),
-          Container(
-            height: 200.0,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: picSeaH.length,
-              itemBuilder: (context, index){
-                return
-                  Container(
-                    width: 200.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                    ),
-                    margin: const EdgeInsets.all(12),
-                    child: Image.network(picSeaH[index], fit:BoxFit.fill),
-                  );
-              },
-            ),
-          ),
-          Divider(),
-          Text("Youth and Law Forum - Session of 2016",style: TextStyle(fontWeight: FontWeight.bold)),
-          Container(
-            height: 200.0,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: other.length,
-              itemBuilder: (context, index){
-                return
-                  Container(
-                    width: 200.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                    ),
-                    margin: const EdgeInsets.all(12),
-                    child: Image.network(other[index], fit:BoxFit.fill),
-                  );
-              },
-            ),
-          ),
+          GalleryRow("Youth and Law Forum - Session of 2017", pic2017),
+          GalleryRow("Youth and Law Forum - Seahawks Training Camp in 2017", picSeaH),
+          GalleryRow("The Steering Committee at Work (Prior to the Pandemic)", other),
+          GalleryRow("Youth and Law Forum - Session of 2016", committee),
           SizedBox(
             height: 140.0,
           ),
           BottomPageMobile(),
+        ],
+      ),
+    );
+  }
+
+  Widget GalleryRow(String title, List<String> list){
+    return Container(
+      height: 250.0,
+      child: Column(
+        children: [
+          Text(title, style: TextStyle(fontWeight: FontWeight.bold),),
+          Container(
+            height: 200.0,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: list.length,
+              itemBuilder: (context, index){
+                return
+                  Container(
+                    width: 200.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                    ),
+                    margin: const EdgeInsets.all(12),
+                    child: Image.network(list[index], fit:BoxFit.fill),
+                  );
+              },
+            ),
+          ),
+          Divider(),
         ],
       ),
     );
@@ -1273,7 +1397,7 @@ class BottomPageMobile extends StatelessWidget{
     }
   }
   _launchInstaURL() async {
-    const url = 'https://instagram.com/theyouthandlawforum?igshid=1pjt1j4t49vnl';
+    const url = 'https://www.instagram.com/youthlawforum/?igshid=1e7b3awcc459k';
     if (await canLaunch(url)) {
       await launch(url);
     } else {

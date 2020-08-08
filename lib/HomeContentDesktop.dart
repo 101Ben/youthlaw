@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:html' as html;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:youthlaw/HomeInfo.dart';
 import 'package:youthlaw/HomePage.dart';
 import 'package:youthlaw/Images/Logo.dart';
@@ -14,10 +15,13 @@ import 'package:youthlaw/PeopleInfo.dart';
 import 'package:youthlaw/PictureInfo.dart';
 import 'package:youthlaw/Schedule/Schedule.dart';
 import 'package:youthlaw/Schedule/ScheduleCard.dart';
+import 'package:youthlaw/fetch_helper/News.dart';
+import 'package:youthlaw/fetch_helper/NewsCard.dart';
+import 'package:youthlaw/fetch_helper/NewsObject.dart';
+import 'package:youthlaw/fetch_helper/fetch_preview.dart';
 import 'package:youthlaw/globals.dart' as globals;
 import 'package:url_launcher/url_launcher.dart';
-import 'package:vector_math/vector_math_64.dart' show Vector3;
-import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
+
 
 class HomeContentDesktop extends StatefulWidget {
   HomeContentDesktop({Key key, this.title}) : super(key: key);
@@ -178,6 +182,46 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
     return cards;
   }
 
+  List<News> _newsList = new List<News>();
+  Future<List<News>> fetchNewsList() async {
+    var url = 'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/NewsLink/NewsInfo.json';
+    var response = await http.get(url);
+    var cards = List<News>();
+    if (response.statusCode == 200) {
+      var cardsJson = json.decode(response.body);
+      for (var cardJson in cardsJson) {
+        cards.add(News.fromJson(cardJson));
+      }
+    }
+    return cards;
+  }
+
+//  List<NewsObject> dataList = new List<NewsObject>();
+//
+//  Future<List<NewsObject>> fetchedNews() async {
+////    var temp = await fetchNewsList();
+////    var list = new List<NewsObject>();
+////    for (News card in temp){
+////      FetchPreview().fetch(card.link).then((res) => {
+////        list.add(new NewsObject(res, card.link))
+////      });
+////    }
+////    return list;
+//    var list = new List<NewsObject>();
+//    fetchNewsList().then((res) {
+//      List<News> _newsList = new List<News>();
+//      _newsList.addAll(res);
+//      for (News card in res){
+//        FetchPreview().fetch(card.link).then((res) => {
+//          list.add(new NewsObject(res, card.link))
+//        });
+//      }
+//    });
+//
+//    return list;
+//
+//  }
+
   @override
   void initState() {
     fetchPeopleInfo().then((people) {
@@ -198,6 +242,11 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
     fetchSchedule().then((schedule) {
       setState(() {
         _schedule.addAll(schedule);
+      });
+    });
+    fetchNewsList().then((news) {
+      setState(() {
+        _newsList.addAll(news);
       });
     });
     super.initState();
@@ -301,28 +350,72 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
               ),
             ],
           ),
-          FlatButton(
-            hoverColor: Colors.grey,
-            //color: Colors.greenAccent,
-            shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(12)),
-            child: Text(
-              "Information and Registration here",
-              style: TextStyle(
-                  fontSize: 20,
-                  decoration: TextDecoration.underline,
-                  fontStyle: FontStyle.italic),
-              textAlign: TextAlign.center,
+          Container(
+            color: Colors.black,
+            child: FlatButton(
+              hoverColor: Colors.grey,
+              //color: Colors.greenAccent,
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(12)),
+              child: Text(
+                "Information and Registration here",
+                style: TextStyle(
+                    fontSize: 20,
+                    fontStyle: FontStyle.italic,
+                color:Colors.white),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () {
+                setState(() {
+                  globals.currentPage = 3;
+                  PageContent = forumLink();
+                });
+              },
             ),
-            onPressed: () {
-              setState(() {
-                globals.currentPage = 3;
-                PageContent = forumLink();
-              });
-            },
           ),
           SizedBox(
-            height: 400.0,
+            height: 50.0,
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 32.0, left: 12.0),
+            child: Text(
+              "News & Articles",
+              style: TextStyle(
+                decoration: TextDecoration.underline,
+                fontSize: 32.0,
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ),
+//          dataList.map((val) => {
+//            _buildPreviewWidget(dataList[i], _newsList[i].link),
+//          })
+        Divider(),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width / 6.0),
+//            height: 200.0,
+//            child: GridView.builder(
+//                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                  crossAxisCount: 2,
+//                  mainAxisSpacing: 12,
+//                  crossAxisSpacing: 2
+//                ),
+//                itemCount: _newsList.length,
+//                itemBuilder: (BuildContext context, int index){
+//                  return NewsCard( url: _newsList[index].link, picture: _newsList[index].picture,
+//                  message: _newsList[index].message);
+//                }),
+            child: Column(
+              children: [
+                for (int i = 0; i < _newsList.length; i++)
+            NewsCard( url: _newsList[i].link, picture: _newsList[i].picture,
+                  message: _newsList[i].message)
+              ],
+            ),
+          ),
+
+          SizedBox(
+            height: 200.0,
           ),
           BottomPage(),
         ],
@@ -403,31 +496,6 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
     );
   }
 
-//  Widget contentImage = Column(
-//    children: <Widget>[
-//      Container(
-//        decoration: BoxDecoration(
-//          shape: BoxShape.rectangle,
-//        ),
-//        margin: const EdgeInsets.all(12),
-//        child: Image.network(
-//          'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleOne.png',
-//          fit: BoxFit.fill,
-//        ),
-//      ),
-//      Container(
-//        decoration: BoxDecoration(
-//          shape: BoxShape.rectangle,
-//        ),
-//        margin: const EdgeInsets.all(12),
-//        child: Image.network(
-//          'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/assetslogo/scheduleTwo.png',
-//          fit: BoxFit.fill,
-//        ),
-//      ),
-//    ],
-//  );
-
 
   Widget forumLink() {
     List<PeopleInfo> _speakers = List<PeopleInfo>();
@@ -435,6 +503,11 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
       if (temp.group == "speaker20") {
         _speakers.add(temp);
       }
+    }
+    List<String> _banner = List<String>();
+
+    for (var temp in _pictures) {
+      if (temp.group == "banner") _banner.add(temp.picLink);
     }
 
     return Container(
@@ -478,29 +551,40 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
               ),
             ),
             Divider(),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 12.0),
+              child: Container(
+                color: Colors.black,
+                child: FlatButton(
+                  onPressed: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(12)),
+                  child: Text(
+                    "Guest Speakers",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  "Schedule",
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontStyle: FontStyle.italic,
-                    decoration: TextDecoration.underline,
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 18),
+                  child: Text(
+                    "Schedule",
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontStyle: FontStyle.italic,
+                    ),
                   ),
                 ),
-//                FlatButton(
-//                  hoverColor: Colors.grey,
-//                  shape: new RoundedRectangleBorder(
-//                      borderRadius: new BorderRadius.circular(12)),
-//                  child: Text(
-//                    "Schedule",
-//                    style: TextStyle(
-//                      fontSize: 30,
-//                      fontStyle: FontStyle.italic,
-//                      decoration: TextDecoration.underline,
-//                    ),
-//                  ),
 //                  onPressed: () {
 //                    setState(() {
 //                      contentImage = Column(
@@ -580,48 +664,83 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
 //                ),
               ],
             ),
-            Divider(),
             Container(
               child: Column(
                         children: <Widget>[
                           for(var i = 0; i < _schedule.length; i++)
-//                            for (var temp in _schedule)
-//                              if (temp.id == i.toString())
-//                                Container(
-//                                  height: 420,
-//                                  child: ListView.builder(
-//                                    scrollDirection: Axis.horizontal,
-//                                    itemCount: 2,
-//                                    itemBuilder: (context, index){
-//                                      return
-//                                        ScheduleCard(duration: temp.duration,
-//                                          id: temp.id, link: temp.link, location: temp.location, summary: temp.summary,
-//                                          theme: temp.theme, time: temp.time, context: context,);
-//                                    },
-//                                  ),
-//                                ),
-
                             ScheduleCard(duration: _schedule[i].duration,
                               id: _schedule[i].id, link: _schedule[i].link, location: _schedule[i].location, summary: _schedule[i].summary,
                               theme: _schedule[i].theme, time: _schedule[i].time, context: context,),
                         ]
               ),
             ),
-            FlatButton(
-              child: Text(
-                'DownLoad Schedule',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                  fontStyle: FontStyle.italic,
-                  fontSize: 16,
-                  decoration: TextDecoration.underline,
-                ),
-              ),
-              onPressed: () {
-                _launchDownloadSchedule();
-              },
+            Divider(
+              height: 10.0,
             ),
+            Padding(
+              padding: EdgeInsets.only(top: 32.0, left: 12.0),
+              child: Text(
+                "Current and Past Flyers",
+                style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  fontSize: 32.0,
+                ),
+                textAlign: TextAlign.left,
+              ),
+            ),
+            Container(
+              height: 300.0,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: _banner.length,
+                itemBuilder: (context, index){
+                  return
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: 300.0,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                          ),
+                          margin: const EdgeInsets.all(12),
+                          child: Image.network(_banner[index], fit:BoxFit.fill),
+                        ),
+                        RaisedButton(
+                          onPressed: (){
+//                            downloadFile(_banner[index]);
+                              String url = _banner[index];
+                            canLaunch(url).then((val ) =>{
+                              launch(url)
+                            }).catchError(() => {
+                              throw 'Could not launch $url'
+                            });
+                          },
+                          child: Text(
+                            "View"
+                          ),
+                        )
+                      ],
+                    );
+                },
+              ),
+            ),
+
+//            FlatButton(
+//              child: Text(
+//                'DownLoad Schedule',
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                  fontStyle: FontStyle.italic,
+//                  fontSize: 16,
+//                  decoration: TextDecoration.underline,
+//                ),
+//              ),
+//              onPressed: () {
+//                _launchDownloadSchedule();
+//              },
+//            ),
             SizedBox(
               height: 200.0,
             ),
@@ -760,13 +879,13 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
     List<String> other = List<String>();
     List<String> pic2017 = List<String>();
     List<String> picSeaH = List<String>();
+    List<String> committee = List<String>();
 
     for (var temp in _pictures) {
-      if (temp.group == "other")
-        other.add(temp.picLink);
-      else if (temp.group == "2017")
-        pic2017.add(temp.picLink);
+      if (temp.group == "other") other.add(temp.picLink);
+      else if (temp.group == "2017") pic2017.add(temp.picLink);
       else if (temp.group == "sea") picSeaH.add(temp.picLink);
+      else if (temp.group == "committee") committee.add(temp.picLink);
     }
     return Container(
       child: Column(
@@ -799,67 +918,10 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
 //            ),
 //          ),
           Divider(),
-          Text(
-            "Youth and Law Forum - Session of 2017",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          Container(
-            height: 200.0,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: pic2017.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  width: 200.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                  ),
-                  margin: const EdgeInsets.all(12),
-                  child: Image.network(pic2017[index], fit: BoxFit.fill),
-                );
-              },
-            ),
-          ),
-          Divider(),
-          Text("Youth and Law Forum - Seahawks Traning Camp in 2017",
-              style: TextStyle(fontWeight: FontWeight.bold)),
-          Container(
-            height: 200.0,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: picSeaH.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  width: 200.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                  ),
-                  margin: const EdgeInsets.all(12),
-                  child: Image.network(picSeaH[index], fit: BoxFit.fill),
-                );
-              },
-            ),
-          ),
-          Divider(),
-          Text("Youth and Law Forum - Session of 2016",
-              style: TextStyle(fontWeight: FontWeight.bold)),
-          Container(
-            height: 200.0,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: other.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  width: 200.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                  ),
-                  margin: const EdgeInsets.all(12),
-                  child: Image.network(other[index], fit: BoxFit.fill),
-                );
-              },
-            ),
-          ),
+          GalleryRow("Youth and Law Forum - Session of 2017", pic2017),
+          GalleryRow("Youth and Law Forum - Seahawks Training Camp in 2017", picSeaH),
+          GalleryRow("The Steering Committee at Work (Prior to the Pandemic)", other),
+          GalleryRow("Youth and Law Forum - Session of 2016", committee),
           SizedBox(
             height: 300.0,
           ),
@@ -882,6 +944,36 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: _buildGridTileList(_pictures.length),
+      ),
+    );
+  }
+
+  Widget GalleryRow(String title, List<String> list){
+    return Container(
+      height: 250.0,
+      child: Column(
+        children: [
+          Text(title, style: TextStyle(fontWeight: FontWeight.bold),),
+          Container(
+            height: 200.0,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: list.length,
+              itemBuilder: (context, index){
+                return
+                  Container(
+                    width: 200.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                    ),
+                    margin: const EdgeInsets.all(12),
+                    child: Image.network(list[index], fit:BoxFit.fill),
+                  );
+              },
+            ),
+          ),
+          Divider(),
+        ],
       ),
     );
   }
@@ -1265,7 +1357,7 @@ class BottomPage extends StatelessWidget {
 
   _launchInstaURL() async {
     const url =
-        'https://instagram.com/theyouthandlawforum?igshid=1pjt1j4t49vnl';
+        'https://www.instagram.com/youthlawforum/?igshid=1e7b3awcc459k';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
