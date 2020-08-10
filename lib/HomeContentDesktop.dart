@@ -274,38 +274,22 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
               fit: BoxFit.fill,
             ),
           ),
-          Stack(
-            children: <Widget>[
-//              Container(
-//                width: double.infinity,
-//                height: 200.0,
-//                decoration: BoxDecoration(
-//                  shape: BoxShape.rectangle,
-//                ),
-//                //margin: const EdgeInsets.all(12),
-//                child: Image.network(
-//                  'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
-//                  fit: BoxFit.cover,
-//                ),
-//              ),
-              Padding(
-                padding: EdgeInsets.only(left: 12.0),
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 12.0),
-                    child: Text(
-                      "Judge Charles V. Johnson Youth & Law Forum",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontStyle: FontStyle.italic,
-                        fontSize: 64,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
+          Padding(
+            padding: EdgeInsets.only(left: 12.0),
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 12.0),
+                child: Text(
+                  "Judge Charles V. Johnson Youth & Law Forum",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontStyle: FontStyle.italic,
+                    fontSize: 64,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
-            ],
+            ),
           ),
           Padding(
             padding: EdgeInsets.only(top: 32.0, left: 12.0),
@@ -859,10 +843,13 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
                               ),
                               margin: const EdgeInsets.all(32),
                               child: Image.network(_logo[i].link, fit: BoxFit.cover)),
-                          SelectableText(_logo[i].text, style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 18
-                          ),),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 32.0),
+                            child: SelectableText(_logo[i].text, style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 18,
+                            ), textAlign: TextAlign.center,),
+                          ),
                         ]
                     )
                 ),
@@ -876,16 +863,21 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
   }
 
   Widget galleryLink() {
-    List<String> other = List<String>();
     List<String> pic2017 = List<String>();
     List<String> picSeaH = List<String>();
     List<String> committee = List<String>();
+    List<String> pic2010 = List<String>();
+    List<String> pic2014 = List<String>();
+    List<String> pic2016 = List<String>();
 
     for (var temp in _pictures) {
-      if (temp.group == "other") other.add(temp.picLink);
+      if (temp.group == "other") pic2016.add(temp.picLink);
       else if (temp.group == "2017") pic2017.add(temp.picLink);
       else if (temp.group == "sea") picSeaH.add(temp.picLink);
       else if (temp.group == "committee") committee.add(temp.picLink);
+      else if (temp.group == "2010") pic2010.add(temp.picLink);
+      else if (temp.group == "2014") pic2014.add(temp.picLink);
+      else if (temp.group == "2016") pic2016.add(temp.picLink);
     }
     return Container(
       child: Column(
@@ -920,8 +912,10 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
           Divider(),
           GalleryRow("Youth and Law Forum - Session of 2017", pic2017),
           GalleryRow("Youth and Law Forum - Seahawks Training Camp in 2017", picSeaH),
-          GalleryRow("The Steering Committee at Work (Prior to the Pandemic)", other),
-          GalleryRow("Youth and Law Forum - Session of 2016", committee),
+          GalleryRow("Youth and Law Forum - Session of 2016", pic2016),
+          GalleryRow("Youth and Law Forum - Session of 2014", pic2014),
+          GalleryRow("Youth and Law Forum - Session of 2010", pic2010),
+          GalleryRow("The Steering Committee at Work", committee),
           SizedBox(
             height: 300.0,
           ),

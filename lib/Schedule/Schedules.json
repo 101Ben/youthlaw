@@ -2,72 +2,162 @@
   {
     "id":"1",
     "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/welcome.png",
-    "time": "xx-xx to xx-xx",
-    "duration": "xx minutes",
+    "time": "9:00 to 9:12",
+    "duration": "12 minutes",
     "location" : "Main Room",
-    "theme": "Theme",
+    "theme": "Welcome and Greetings from Chair",
     "summary": "brief summary"
   },
   {
     "id":"2",
-    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/exercise.png",
-    "time": "xx-xx to xx-xx",
-    "duration": "xx minutes",
+    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/speaker.jpg",
+    "time": "9:12 to 9:15",
+    "duration": "3 minutes",
     "location" : "Main Room",
-    "theme": "Theme",
+    "theme": "Special Guess",
     "summary": "brief summary"
   },
   {
     "id":"2",
-    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/temp.png",
-    "time": "xx-xx to xx-xx",
-    "duration": "xx minutes",
-    "location" : "Main Room",
-    "theme": "Theme",
-    "summary": "brief summary"
-  },
-  {
-    "id":"3",
     "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/poetry.png",
-    "time": "xx-xx to xx-xx",
-    "duration": "xx minutes",
+    "time": "9:15 to 9:18",
+    "duration": "3 minutes",
     "location" : "Main Room",
-    "theme": "Theme",
+    "theme": "Youth Poem",
+    "summary": "Spoken word"
+  },
+  {
+    "id":"3",
+    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/exercise.png",
+    "time": "9:18 to 9:21",
+    "duration": "3 minutes",
+    "location" : "Main Room",
+    "theme": "Fitness Yoga",
     "summary": "brief summary"
   },
   {
     "id":"3",
-    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/social.png",
-    "time": "xx-xx to xx-xx",
-    "duration": "xx minutes",
+    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/debate.png",
+    "time": "9:21 to 9:25",
+    "duration": "4 minutes",
     "location" : "Main Room",
-    "theme": "Theme",
+    "theme": "Youth Debate",
     "summary": "brief summary",
   },
   {
     "id":"3",
-    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/flame.png",
-    "time": "xx-xx to xx-xx",
-    "duration": "xx minutes",
+    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/welcome.png",
+    "time": "9:25 to 9:30",
+    "duration": "5 minutes",
     "location" : "Main Room",
-    "theme": "Theme",
+    "theme": "Welcome From Rev Anderson and YLF Founders",
     "summary": "brief summary"
   },{
   "id":"4",
-  "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/temp.png",
-  "time": "xx-xx to xx-xx",
-  "duration": "xx minutes",
-  "location" : "Main Room",
-  "theme": "Theme",
+  "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/lesson.png",
+  "time": "9:30 to 10:05",
+  "duration": "35 minutes",
+  "location" : "Breakout Rooms",
+  "theme": "Lesson 1: Legal Rights & Responsibilities",
   "summary": "brief summary"
 },
   {
+    "id":"2",
+    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/speaker.jpg",
+    "time": "10:05 to 10:10",
+    "duration": "5 minutes",
+    "location" : "Main Room",
+    "theme": "Special Guess",
+    "summary": "Social Media Influencer"
+  },
+  {
+    "id":"5",
+    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/temp.jpg",
+    "time": "10:10 to 10:5",
+    "duration": "5 minutes",
+    "location" : "Main Room",
+    "theme": "Dignitary Introduction",
+    "summary": "brief summary"
+  },
+  {
+    "id":"3",
+    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/debate.png",
+    "time": "10:15 to 10:20",
+    "duration": "4 minutes",
+    "location" : "Main Room",
+    "theme": "Youth Debate",
+    "summary": "brief summary",
+  },
+  {
+    "id":"4",
+    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/lesson.png",
+    "time": "10:20 to 10:55",
+    "duration": "35 minutes",
+    "location" : "Breakout Rooms",
+    "theme": "Lesson 2: Speaking Truth to Power - Social Change & The Law",
+    "summary": "brief summary"
+  },
+  {
+    "id":"2",
+    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/speaker.jpg",
+    "time": "10:55 to 11:00",
+    "duration": "5 minutes",
+    "location" : "Main Room",
+    "theme": "Special Guess",
+    "summary": "Athletes"
+  },
+  {
+    "id":"3",
+    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/exercise.png",
+    "time": "11:00 to 11:05",
+    "duration": "3 minutes",
+    "location" : "Main Room",
+    "theme": "Fitness Yoga",
+    "summary": "brief summary"
+  },
+  {
+    "id":"5",
+    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/temp.jpg",
+    "time": "11:05 to 11:10",
+    "duration": "5 minutes",
+    "location" : "Main Room",
+    "theme": "Dignitary Introduction",
+    "summary": "brief summary"
+  },
+  {
+    "id":"4",
+    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/lesson.png",
+    "time": "11:10:20 to 11:35",
+    "duration": "25 minutes",
+    "location" : "Breakout Rooms",
+    "theme": "Lesson 3: Taking Care of Yourself While Taking Care of Business",
+    "summary": "brief summary"
+  },
+  {
+    "id":"2",
+    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/speaker.jpg",
+    "time": "11:35 to 11:45",
+    "duration": "5 minutes",
+    "location" : "Main Room",
+    "theme": "Special Guess",
+    "summary": "Musician"
+  },
+  {
+    "id":"2",
+    "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/poetry.png",
+    "time": "11:45 to 11:47",
+    "duration": "3 minutes",
+    "location" : "Main Room",
+    "theme": "Youth Poem",
+    "summary": "Spoken word"
+  },
+  {
     "id":"4",
     "link": "https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/iconCards/giveaways.png",
-    "time": "xx-xx to xx-xx",
-    "duration": "xx minutes",
+    "time": "11:47 to 12:00",
+    "duration": "13 minutes",
     "location" : "Main Room",
-    "theme": "Theme",
-    "summary": "brief summary"
+    "theme": "Closing Remarks and Gift Raffle",
+    "summary": "Don't forgot to claim you gift"
   }
 ]
