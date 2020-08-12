@@ -814,10 +814,10 @@ class HomeContentMobileState extends State<HomeContentMobile> {
   }
 
   Widget sponsorsLink(){
-    List<String> logo = List<String>();
-    for (var temp in _pictures){
-      if (temp.group == "logo") logo.add(temp.picLink);
-    }
+//    List<String> logo = List<String>();
+//    for (var temp in _pictures){
+//      if (temp.group == "logo") logo.add(temp.picLink);
+//    }
     return Container(
       child: Center(
           child: Column(
@@ -835,7 +835,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
               ),
               header("Our Sponsors"),
               Divider(),
-              for (var i = 0; i < logo.length; i++)
+              for (var i = 0; i < _logo.length; i++)
                 Container(
                     child: Column(
                         children:[
@@ -981,7 +981,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
               padding: EdgeInsets.symmetric(vertical: 16.0),
               child: Center(
                 child: Text(
-                  "Judge Charles V. Johnson\nYouth & Law Forum",
+                  "Judge Charles V. Johnson\nYouth & Law Forum ",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontStyle: FontStyle.italic,

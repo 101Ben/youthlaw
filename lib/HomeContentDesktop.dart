@@ -280,7 +280,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 12.0),
                 child: Text(
-                  "Judge Charles V. Johnson Youth & Law Forum",
+                  "Judge Charles V. Johnson Youth & Law Forum ",
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontStyle: FontStyle.italic,
@@ -912,10 +912,10 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
           Divider(),
           GalleryRow("Youth and Law Forum - Session of 2017", pic2017),
           GalleryRow("Youth and Law Forum - Seahawks Training Camp in 2017", picSeaH),
-          GalleryRow("Youth and Law Forum - Session of 2016", pic2016),
-          GalleryRow("Youth and Law Forum - Session of 2014", pic2014),
-          GalleryRow("Youth and Law Forum - Session of 2010", pic2010),
-          GalleryRow("The Steering Committee at Work", committee),
+          GalleryRow("Youth and Law Forum - Session of 2016 ", pic2016),
+          GalleryRow("Youth and Law Forum - Session of 2014 ", pic2014),
+          GalleryRow("Youth and Law Forum - Session of 2010 ", pic2010),
+          GalleryRow("The Steering Committee at Work ", committee),
           SizedBox(
             height: 300.0,
           ),
@@ -980,19 +980,16 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: EdgeInsets.only(left: 12.0),
+              padding: EdgeInsets.symmetric(vertical: 1.0),
               child: Center(
-                child: Padding (
-                  padding: EdgeInsets.symmetric(vertical: 18.0),
-                  child: Text(
-                    "Judge Charles V. Johnson Youth & Law Forum",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontStyle: FontStyle.italic,
-                      fontSize: 64,
-                    ),
-                    textAlign: TextAlign.center,
+                child: Text(
+                  "Judge Charles V. Johnson Youth & Law Forum ",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontStyle: FontStyle.italic,
+                    fontSize: 58,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),
