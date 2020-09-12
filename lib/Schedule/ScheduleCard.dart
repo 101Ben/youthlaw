@@ -130,18 +130,18 @@ class ScheduleCardState extends State<ScheduleCard> {
                       Expanded(
                         child: SizedBox(
                           child: ListTile(
-                            title: SelectableText(
-                              widget.theme,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
+//                            title: SelectableText(
+//                              widget.theme,
+//                              textAlign: TextAlign.center,
+//                              style: TextStyle(
+//                                fontSize: 20,
+//                                fontWeight: FontWeight.w700,
+//                              ),
+//                            ),
                             subtitle: SelectableText(widget.summary,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 12,
                                 )),
                           ),
                         ),

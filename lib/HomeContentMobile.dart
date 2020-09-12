@@ -1023,8 +1023,8 @@ class HomeContentMobileState extends State<HomeContentMobile> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-          Text(
+          children: <Widget> [
+            Text(
               '$day : $hour : $minute : $sec',
               style: TextStyle(
                 fontSize: 36,
@@ -1255,7 +1255,7 @@ class leaderCard extends StatelessWidget{
               SizedBox(
                 child: ListTile(
                   title:
-                  Text(
+                  SelectableText(
                     name,//    cardName + "\n\$ " + price,
                     style: TextStyle(
                       fontSize: 16,
@@ -1263,7 +1263,7 @@ class leaderCard extends StatelessWidget{
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  subtitle: Text(
+                  subtitle: SelectableText(
                       "\n" + message,
                       style: TextStyle(
                         fontSize: 12,

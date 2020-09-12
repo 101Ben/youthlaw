@@ -1193,14 +1193,14 @@ class leaderCard extends StatelessWidget {
             Expanded(
               child: SizedBox(
                 child: ListTile(
-                  title: Text(
+                  title: SelectableText(
                     name,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  subtitle: Text("\n" + message,
+                  subtitle: SelectableText("\n" + message,
                       style: TextStyle(
                         fontSize: 14,
                       )),
