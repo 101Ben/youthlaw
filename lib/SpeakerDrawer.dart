@@ -49,7 +49,7 @@ class SpeakerDrawerState extends State<SpeakerDrawer> {
     }
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.0),
-      width: MediaQuery.of(context).size.width / 3.0,
+      width: MediaQuery.of(context).size.width * 0.65,
       decoration: BoxDecoration(
         color: Colors.white,
         //boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 16)]
