@@ -5,7 +5,8 @@ The Youth and Law Forum is a Not Profit Organization based in Seattle that is he
 ## Getting Started
 
 This project is to support their online signature of the Youth and Law Forum and shows their face to the world. 
-The web app is build using flutter web development and is curently hosted at https://youthandlawforum.web.app or https://youthandlaw.com
+The web app is build using flutter web development and is curently hosted at https://youthandlawforum.web.app and could be accessed via https://youthandlaw.com.
+
 Please visit the site to get more information. 
 
 Thank you.
