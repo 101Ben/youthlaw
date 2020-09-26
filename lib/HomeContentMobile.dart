@@ -10,6 +10,7 @@ import 'package:youthlaw/Images/Logo.dart';
 import 'package:youthlaw/PeopleInfo.dart';
 import 'package:youthlaw/Schedule/Schedule.dart';
 import 'package:youthlaw/Schedule/ScheduleCard.dart';
+import 'package:youthlaw/embed_video/video_demo_mobile.dart';
 import 'package:youthlaw/fetch_helper/News.dart';
 import 'package:youthlaw/fetch_helper/NewsCard.dart';
 import 'package:youthlaw/fetch_helper/NewsCardMobile.dart';
@@ -204,14 +205,33 @@ class HomeContentMobileState extends State<HomeContentMobile> {
           },
           ),
           Padding(
-            padding: EdgeInsets.only(top: 32.0, left: 12.0, bottom: 22.0),
+            padding: EdgeInsets.only(top: 32.0, left: 12.0),
             child: Text(
-              "Upcoming Events",
+              "Tribute to Co-Founder, Judge Charles V. Johnson (Retired)",
               style: TextStyle(
-                decoration: TextDecoration.underline,
+//                decoration: TextDecoration.underline,
                 fontSize: 32.0,
               ),
-              textAlign: TextAlign.left,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 12.0),
+            child: Container(
+                height:  MediaQuery.of(context).size.width * 0.7,
+                width:  MediaQuery.of(context).size.width * 0.90,
+                child: VideoAppMobile()
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 32.0, left: 12.0),
+            child: Text(
+              "Thank You for Participating in the 30th Anniversary Youth and Law Forum",
+              style: TextStyle(
+//                decoration: TextDecoration.underline,
+                fontSize: 32.0,
+              ),
+              textAlign: TextAlign.center,
             ),
           ),
           Container(
@@ -462,7 +482,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
             ),
             header("The Power of One: In Each of Us a Flame"),
             Divider(),
-            Center(child: countDown()),
+            Center(child: countDownEnd()),
             SizedBox(
               child: SelectableText(
                 'Date: September 26, 2020',
@@ -1009,6 +1029,36 @@ class HomeContentMobileState extends State<HomeContentMobile> {
           ],
         ),
       ],
+    );
+  }
+
+  Widget countDownEnd(){
+    int day = globals.days;
+    int hour = globals.hours;
+    int minute = globals.minutes;
+    int sec = globals.secs;
+    return Container(
+      height: 60.0,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget> [
+            Text(
+              '00 : 00 : 00 : 00',
+              style: TextStyle(
+                fontSize: 36,
+              ),
+            ),
+            Text(
+              'days\t\thours\t\tminutes\t\tseconds',
+              style: TextStyle(
+                fontSize: 9,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 

@@ -15,6 +15,7 @@ import 'package:youthlaw/PeopleInfo.dart';
 import 'package:youthlaw/PictureInfo.dart';
 import 'package:youthlaw/Schedule/Schedule.dart';
 import 'package:youthlaw/Schedule/ScheduleCard.dart';
+import 'package:youthlaw/embed_video/video_demo.dart';
 import 'package:youthlaw/fetch_helper/News.dart';
 import 'package:youthlaw/fetch_helper/NewsCard.dart';
 import 'package:youthlaw/fetch_helper/NewsObject.dart';
@@ -294,12 +295,31 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
           Padding(
             padding: EdgeInsets.only(top: 32.0, left: 12.0),
             child: Text(
-              "Upcoming Events",
+              "Tribute to Co-Founder, Judge Charles V. Johnson (Retired)",
               style: TextStyle(
                 decoration: TextDecoration.underline,
                 fontSize: 32.0,
               ),
-              textAlign: TextAlign.left,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 12.0),
+            child: Container(
+                height:  MediaQuery.of(context).size.width * 0.45,
+                width:  MediaQuery.of(context).size.width * 0.65,
+                child: VideoApp()
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 32.0, left: 12.0),
+            child: Text(
+              "Thank You for Participating in the 30th Anniversary Youth and Law Forum",
+              style: TextStyle(
+                decoration: TextDecoration.underline,
+                fontSize: 32.0,
+              ),
+              textAlign: TextAlign.center,
             ),
           ),
           Divider(),
@@ -411,72 +431,72 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
     return Container(
       child: Center(
           child: Column(
-        children: <Widget>[
-          Container(
-            width: double.infinity,
-            height: 240.0,
-            decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-            ),
-            //margin: const EdgeInsets.all(12),
-            child: Image.network(
-              'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
-              fit: BoxFit.fill,
-            ),
-          ),
-          header("Information"),
-          Divider(),
-          Text(
-            "What is it",
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
-          ),
-          SizedBox(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 32.0, horizontal: 128.0),
-              child: SelectableText(
-                globals.whatIsIt,
-                scrollPhysics: BouncingScrollPhysics(),
-                style: TextStyle(fontSize: 20),
+            children: <Widget>[
+              Container(
+                width: double.infinity,
+                height: 240.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                ),
+                //margin: const EdgeInsets.all(12),
+                child: Image.network(
+                  'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
+                  fit: BoxFit.fill,
+                ),
               ),
-            ),
-          ),
-          Divider(),
-          SelectableText(
-            "Objectives",
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
-          ),
-          SizedBox(
-            child: Padding(
-              padding:
-              EdgeInsets.symmetric(vertical: 32.0, horizontal: 128.0),
-              child: SelectableText(
-                globals.objectives,
-                style: TextStyle(fontSize: 20),
+              header("Information"),
+              Divider(),
+              Text(
+                "What is it",
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
               ),
-            ),
-          ),
-          Divider(),
-          SelectableText(
-            "History",
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
-          ),
-          SizedBox(
-            child: Padding(
-              padding:
-              EdgeInsets.symmetric(vertical: 32.0, horizontal: 128.0),
-              child: SelectableText(
-                globals.history,
-                style: TextStyle(fontSize: 20),
+              SizedBox(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 32.0, horizontal: 128.0),
+                  child: SelectableText(
+                    globals.whatIsIt,
+                    scrollPhysics: BouncingScrollPhysics(),
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
               ),
-            ),
-          ),
-          Divider(),
-          SizedBox(
-            height: 300.0,
-          ),
-          BottomPage(),
-        ],
-      )),
+              Divider(),
+              SelectableText(
+                "Objectives",
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
+              ),
+              SizedBox(
+                child: Padding(
+                  padding:
+                  EdgeInsets.symmetric(vertical: 32.0, horizontal: 128.0),
+                  child: SelectableText(
+                    globals.objectives,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              ),
+              Divider(),
+              SelectableText(
+                "History",
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
+              ),
+              SizedBox(
+                child: Padding(
+                  padding:
+                  EdgeInsets.symmetric(vertical: 32.0, horizontal: 128.0),
+                  child: SelectableText(
+                    globals.history,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              ),
+              Divider(),
+              SizedBox(
+                height: 300.0,
+              ),
+              BottomPage(),
+            ],
+          )),
     );
   }
 
@@ -521,7 +541,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
               ),
               height: 70,
               //width: 140,
-              child: Center(child: countDown()),
+              child: Center(child: countDownEnd()),
             ),
             SizedBox(
               child: SelectableText(
@@ -1011,6 +1031,36 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
           ],
         ),
       ],
+    );
+  }
+
+  Widget countDownEnd(){
+    int day = globals.days;
+    int hour = globals.hours;
+    int minute = globals.minutes;
+    int sec = globals.secs;
+    return Container(
+      height: 60.0,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget> [
+            Text(
+              '0 : 0 : 0 : 0 ',
+              style: TextStyle(
+                fontSize: 40,
+              ),
+            ),
+            Text(
+              'days\t\thours\t\tminutes\t\tseconds',
+              style: TextStyle(
+                fontSize: 9,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
