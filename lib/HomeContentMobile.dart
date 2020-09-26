@@ -215,6 +215,15 @@ class HomeContentMobileState extends State<HomeContentMobile> {
               textAlign: TextAlign.center,
             ),
           ),
+          Container(
+            height: MediaQuery.of(context).size.width * 0.7,
+            width: MediaQuery.of(context).size.width * 0.90,
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+            ),
+            margin: const EdgeInsets.all(12),
+            child: Image.network("https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/2020/Judge%20award.jpg", fit:BoxFit.fill),
+          ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 12.0),
             child: Container(

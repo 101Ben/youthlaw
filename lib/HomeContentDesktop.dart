@@ -303,6 +303,15 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
               textAlign: TextAlign.center,
             ),
           ),
+          Container(
+            height:  MediaQuery.of(context).size.width * 0.45,
+            width:  MediaQuery.of(context).size.width * 0.60,
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+            ),
+            margin: const EdgeInsets.all(12),
+            child: Image.network("https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/2020/Judge%20award.jpg", fit:BoxFit.fill),
+          ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 12.0),
             child: Container(
@@ -889,6 +898,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
     List<String> pic2010 = List<String>();
     List<String> pic2014 = List<String>();
     List<String> pic2016 = List<String>();
+    List<String> pic2020 = List<String>();
 
     for (var temp in _pictures) {
       if (temp.group == "other") pic2016.add(temp.picLink);
@@ -898,6 +908,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
       else if (temp.group == "2010") pic2010.add(temp.picLink);
       else if (temp.group == "2014") pic2014.add(temp.picLink);
       else if (temp.group == "2016") pic2016.add(temp.picLink);
+      else if (temp.group == "2020") pic2020.add(temp.picLink);
     }
     return Container(
       child: Column(
@@ -930,6 +941,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
 //            ),
 //          ),
           Divider(),
+          GalleryRow("Youth and Law Forum - Online Session of 2020 ", pic2020),
           GalleryRow("Youth and Law Forum - Session of 2017", pic2017),
           GalleryRow("Youth and Law Forum - Seahawks Training Camp in 2017", picSeaH),
           GalleryRow("Youth and Law Forum - Session of 2016 ", pic2016),

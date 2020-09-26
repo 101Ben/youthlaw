@@ -28,9 +28,7 @@ class _VideoAppVideoAppMobileState extends State<VideoAppMobile> {
   double volume = 0.5;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Video Demo',
-      home: Scaffold(
+    return Scaffold(
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -77,8 +75,7 @@ class _VideoAppVideoAppMobileState extends State<VideoAppMobile> {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 
   @override
