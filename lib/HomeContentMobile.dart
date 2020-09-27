@@ -235,7 +235,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
           Padding(
             padding: EdgeInsets.only(top: 32.0, left: 12.0),
             child: Text(
-              "Thank You for Participating in the 30th Anniversary Youth and Law Forum",
+              "Thank You for Participating in the 30th Anniversary of Youth and Law Forum",
               style: TextStyle(
 //                decoration: TextDecoration.underline,
                 fontSize: 32.0,
@@ -927,6 +927,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
     List<String> pic2010 = List<String>();
     List<String> pic2014 = List<String>();
     List<String> pic2016 = List<String>();
+    List<String> pic2020 = List<String>();
 
     for (var temp in _pictures){
       if (temp.group == "other") pic2016.add(temp.picLink);
@@ -936,6 +937,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
       else if (temp.group == "2010") pic2010.add(temp.picLink);
       else if (temp.group == "2014") pic2014.add(temp.picLink);
       else if (temp.group == "2016") pic2016.add(temp.picLink);
+      else if (temp.group == "2020") pic2020.add(temp.picLink);
     }
     return Container(
       child: Column(
@@ -954,6 +956,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
           ),
           header("Memories and Activities"),
           Divider(),
+          GalleryRow("Youth and Law Forum - Online Session of 2020 ", pic2020),
           GalleryRow("Youth and Law Forum - Session of 2017", pic2017),
           GalleryRow("Youth and Law Forum - Seahawks Training Camp in 2017", picSeaH),
           GalleryRow("Youth and Law Forum - Session of 2016", pic2016),

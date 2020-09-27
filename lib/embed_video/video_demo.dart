@@ -14,7 +14,7 @@ class _VideoAppState extends State<VideoApp> {
     super.initState();
     _controller = VideoPlayerController.network(
 //        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4')
-    'https://github.com/YouthandLaw/YLFContent/blob/master/videos/website%20video%20pastor.mp4?raw=true')
+    'https://github.com/YouthandLaw/YLFContent/blob/master/videos/finalYLF_Tribute_Video(1).mp4?raw=true')
       ..addListener(() => setState(() {
         videoPosition = _controller.value.position;
       }))

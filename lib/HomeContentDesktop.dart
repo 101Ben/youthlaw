@@ -323,7 +323,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
           Padding(
             padding: EdgeInsets.only(top: 32.0, left: 12.0),
             child: Text(
-              "Thank You for Participating in the 30th Anniversary Youth and Law Forum",
+              "Thank You for Participating in the 30th Anniversary of Youth and Law Forum",
               style: TextStyle(
                 decoration: TextDecoration.underline,
                 fontSize: 32.0,
