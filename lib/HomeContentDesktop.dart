@@ -295,7 +295,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
           Padding(
             padding: EdgeInsets.only(top: 32.0, left: 12.0),
             child: Text(
-              "Tribute to Co-Founder, Judge Charles V. Johnson (Retired)",
+              "Save the Date For the 2021 Forum",
               style: TextStyle(
                 decoration: TextDecoration.underline,
                 fontSize: 32.0,
@@ -304,14 +304,39 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
             ),
           ),
           Container(
-            height:  MediaQuery.of(context).size.width * 0.45,
-            width:  MediaQuery.of(context).size.width * 0.60,
+            height: 400,
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
             ),
-            margin: const EdgeInsets.all(12),
-            child: Image.network("https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/2020/Judge%20award.jpg", fit:BoxFit.fill),
+            margin: const EdgeInsets.all(22),
+            child: Image.network(
+              'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/Youth%20and%20Law%20Forum%202021%20-%20Save%20the%20Date%20.jpg',
+              fit: BoxFit.fill,
+              width: 400,
+              height: 400,
+              semanticLabel: "2021 Forum",
+            ),
           ),
+          Padding(
+            padding: EdgeInsets.only(top: 32.0, left: 12.0),
+            child: Text(
+              "Dedicated to Co-Founder, Hon. Judge Charles V. Johnson (In Memoria)",
+              style: TextStyle(
+                decoration: TextDecoration.underline,
+                fontSize: 32.0,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          // Container(
+          //   height:  MediaQuery.of(context).size.width * 0.45,
+          //   width:  MediaQuery.of(context).size.width * 0.60,
+          //   decoration: BoxDecoration(
+          //     shape: BoxShape.rectangle,
+          //   ),
+          //   margin: const EdgeInsets.all(12),
+          //   child: Image.network("https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/2020/Judge%20award.jpg", fit:BoxFit.fill),
+          // ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 12.0),
             child: Container(
@@ -539,22 +564,22 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
                 fit: BoxFit.fill,
               ),
             ),
-            header("The Power of One: In Each of Us a Flame"),
+            header("Youth and Truth: Justice On Stage"),
             Divider(),
-            Container(
-              width: 400,
-              padding: EdgeInsets.only(left: 70.0),
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              height: 70,
-              //width: 140,
-              child: Center(child: countDownEnd()),
-            ),
+            // Container(
+            //   width: 400,
+            //   padding: EdgeInsets.only(left: 70.0),
+            //   decoration: BoxDecoration(
+            //     shape: BoxShape.rectangle,
+            //     borderRadius: BorderRadius.circular(12.0),
+            //   ),
+            //   height: 70,
+            //   //width: 140,
+            //   child: Center(child: countDownEnd()),
+            // ),
             SizedBox(
               child: SelectableText(
-                'Date: September 26, 2020',
+                'Date: October 09, 2021',
                 style: TextStyle(
                   fontWeight: FontWeight.w300,
                   fontSize: 20,
@@ -677,19 +702,26 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
 //                ),
               ],
             ),
+
+            // IMPORTANT SCHEDULE
+
+            // Container(
+            //   child: Column(
+            //             children: <Widget>[
+            //               for(var i = 0; i < _schedule.length; i++)
+            //                 ScheduleCard(duration: _schedule[i].duration,
+            //                   id: _schedule[i].id, link: _schedule[i].link, location: _schedule[i].location, summary: _schedule[i].summary,
+            //                   theme: _schedule[i].theme, time: _schedule[i].time, context: context,),
+            //             ]
+            //   ),
+            // ),
+
             Container(
-              child: Column(
-                        children: <Widget>[
-                          for(var i = 0; i < _schedule.length; i++)
-                            ScheduleCard(duration: _schedule[i].duration,
-                              id: _schedule[i].id, link: _schedule[i].link, location: _schedule[i].location, summary: _schedule[i].summary,
-                              theme: _schedule[i].theme, time: _schedule[i].time, context: context,),
-                        ]
+              child: Text(
+                "To Be Announced",
               ),
             ),
-            Divider(
-              height: 10.0,
-            ),
+
             Padding(
               padding: EdgeInsets.only(top: 32.0, left: 12.0),
               child: Text(
@@ -1046,130 +1078,130 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
     );
   }
 
-  Widget countDownEnd(){
-    int day = globals.days;
-    int hour = globals.hours;
-    int minute = globals.minutes;
-    int sec = globals.secs;
-    return Container(
-      height: 60.0,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget> [
-            Text(
-              '0 : 0 : 0 : 0 ',
-              style: TextStyle(
-                fontSize: 40,
-              ),
-            ),
-            Text(
-              'days\t\thours\t\tminutes\t\tseconds',
-              style: TextStyle(
-                fontSize: 9,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget countDownEnd(){
+  //   int day = globals.days;
+  //   int hour = globals.hours;
+  //   int minute = globals.minutes;
+  //   int sec = globals.secs;
+  //   return Container(
+  //     height: 60.0,
+  //     child: Center(
+  //       child: Column(
+  //         mainAxisAlignment: MainAxisAlignment.start,
+  //         crossAxisAlignment: CrossAxisAlignment.start,
+  //         children: <Widget> [
+  //           Text(
+  //             '0 : 0 : 0 : 0 ',
+  //             style: TextStyle(
+  //               fontSize: 40,
+  //             ),
+  //           ),
+  //           Text(
+  //             'days\t\thours\t\tminutes\t\tseconds',
+  //             style: TextStyle(
+  //               fontSize: 9,
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
-  Widget countDown() {
-    int day = globals.days;
-    int hour = globals.hours;
-    int minute = globals.minutes;
-    int sec = globals.secs;
-    return Container(
-      child: Row(
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                '$day :',
-                style: TextStyle(
-                  fontSize: 40,
-                ),
-              ),
-              Text(
-                'days',
-                style: TextStyle(
-                  fontSize: 9,
-                ),
-              ),
-            ],
-          ),
-          Divider(
-            thickness: 2.0,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                ' $hour :',
-                style: TextStyle(
-                  fontSize: 40,
-                ),
-              ),
-              Text(
-                'hours',
-                style: TextStyle(
-                  fontSize: 9,
-                ),
-              ),
-            ],
-          ),
-          Divider(
-            thickness: 2.0,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                ' $minute :',
-                style: TextStyle(
-                  fontSize: 40,
-                ),
-              ),
-              Text(
-                'minutes',
-                style: TextStyle(
-                  fontSize: 9,
-                ),
-              ),
-            ],
-          ),
-          Divider(
-            thickness: 2.0,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                ' $sec',
-                style: TextStyle(
-                  fontSize: 40,
-                ),
-              ),
-              Text(
-                ' seconds',
-                style: TextStyle(
-                  fontSize: 9,
-                ),
-              ),
-            ],
-          ),
-          Divider(),
-        ],
-      ),
-    );
-  }
+  // Widget countDown() {
+  //   int day = globals.days;
+  //   int hour = globals.hours;
+  //   int minute = globals.minutes;
+  //   int sec = globals.secs;
+  //   return Container(
+  //     child: Row(
+  //       children: [
+  //         Column(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           crossAxisAlignment: CrossAxisAlignment.center,
+  //           children: [
+  //             Text(
+  //               '$day :',
+  //               style: TextStyle(
+  //                 fontSize: 40,
+  //               ),
+  //             ),
+  //             Text(
+  //               'days',
+  //               style: TextStyle(
+  //                 fontSize: 9,
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         Divider(
+  //           thickness: 2.0,
+  //         ),
+  //         Column(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           crossAxisAlignment: CrossAxisAlignment.center,
+  //           children: [
+  //             Text(
+  //               ' $hour :',
+  //               style: TextStyle(
+  //                 fontSize: 40,
+  //               ),
+  //             ),
+  //             Text(
+  //               'hours',
+  //               style: TextStyle(
+  //                 fontSize: 9,
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         Divider(
+  //           thickness: 2.0,
+  //         ),
+  //         Column(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           crossAxisAlignment: CrossAxisAlignment.center,
+  //           children: [
+  //             Text(
+  //               ' $minute :',
+  //               style: TextStyle(
+  //                 fontSize: 40,
+  //               ),
+  //             ),
+  //             Text(
+  //               'minutes',
+  //               style: TextStyle(
+  //                 fontSize: 9,
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         Divider(
+  //           thickness: 2.0,
+  //         ),
+  //         Column(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           crossAxisAlignment: CrossAxisAlignment.center,
+  //           children: [
+  //             Text(
+  //               ' $sec',
+  //               style: TextStyle(
+  //                 fontSize: 40,
+  //               ),
+  //             ),
+  //             Text(
+  //               ' seconds',
+  //               style: TextStyle(
+  //                 fontSize: 9,
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         Divider(),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

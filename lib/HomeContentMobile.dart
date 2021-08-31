@@ -207,7 +207,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
           Padding(
             padding: EdgeInsets.only(top: 32.0, left: 12.0),
             child: Text(
-              "Tribute to Co-Founder, Judge Charles V. Johnson (Retired)",
+              "Save the Date For the 2021 Forum",
               style: TextStyle(
 //                decoration: TextDecoration.underline,
                 fontSize: 32.0,
@@ -216,14 +216,35 @@ class HomeContentMobileState extends State<HomeContentMobile> {
             ),
           ),
           Container(
-            height: MediaQuery.of(context).size.width * 0.7,
-            width: MediaQuery.of(context).size.width * 0.90,
+            height: 400,
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
             ),
-            margin: const EdgeInsets.all(12),
-            child: Image.network("https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/2020/Judge%20award.jpg", fit:BoxFit.fill),
+            margin: const EdgeInsets.all(22),
+            child: Image.network(
+              'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/Youth%20and%20Law%20Forum%202021%20-%20Save%20the%20Date%20.jpg',
+              fit: BoxFit.fill, width: 400, height: 400, semanticLabel: "2021 Forum", ),
           ),
+          Padding(
+            padding: EdgeInsets.only(top: 32.0, left: 12.0),
+            child: Text(
+              "Dedicated to Co-Founder, Hon. Judge Charles V. Johnson (In Memoria)",
+              style: TextStyle(
+//                decoration: TextDecoration.underline,
+                fontSize: 32.0,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          // Container(
+          //   height: MediaQuery.of(context).size.width * 0.7,
+          //   width: MediaQuery.of(context).size.width * 0.90,
+          //   decoration: BoxDecoration(
+          //     shape: BoxShape.rectangle,
+          //   ),
+          //   margin: const EdgeInsets.all(12),
+          //   child: Image.network("https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/2020/Judge%20award.jpg", fit:BoxFit.fill),
+          // ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 12.0),
             child: Container(
@@ -489,12 +510,12 @@ class HomeContentMobileState extends State<HomeContentMobile> {
                 'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
                 fit: BoxFit.fill,),
             ),
-            header("The Power of One: In Each of Us a Flame"),
+            header("Youth and Truth: Justice On Stage"),
             Divider(),
-            Center(child: countDownEnd()),
+            // Center(child: countDownEnd()),
             SizedBox(
               child: SelectableText(
-                'Date: September 26, 2020',
+                'Date: October 09, 2021',
                 style: TextStyle(
                   fontWeight: FontWeight.w300,
                   fontSize: 20,
@@ -681,16 +702,24 @@ class HomeContentMobileState extends State<HomeContentMobile> {
               ],
             ),
             Divider(),
+
+            // IMPORTANT SCHEDULE
+
+            // Container(
+            //   child: Column(
+            //       children: <Widget>[
+            //         for(var i = 0; i < _schedule.length; i++)
+            //           ScheduleCard(duration: _schedule[i].duration,
+            //             id: _schedule[i].id, link: _schedule[i].link, location: _schedule[i].location, summary: _schedule[i].summary,
+            //             theme: _schedule[i].theme, time: _schedule[i].time, context: context,),]
+            //   ),
+            // ),
+
             Container(
-              child: Column(
-                  children: <Widget>[
-                    for(var i = 0; i < _schedule.length; i++)
-                      ScheduleCard(duration: _schedule[i].duration,
-                        id: _schedule[i].id, link: _schedule[i].link, location: _schedule[i].location, summary: _schedule[i].summary,
-                        theme: _schedule[i].theme, time: _schedule[i].time, context: context,),]
+              child: Text(
+                "To Be Announced"
               ),
             ),
-
 
             Padding(
               padding: EdgeInsets.symmetric (horizontal: 12, vertical: 18.0),
@@ -773,7 +802,7 @@ class HomeContentMobileState extends State<HomeContentMobile> {
   }
 
   _launchRegisterURL() async {
-    const url = 'https://forms.gle/n6EQ8fP3L9TtBLN67';
+    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSdDE4MKEcAVeQ_mnXONjLqQ6HADItM61NUf5bSUwUZf_8rm0g/viewform?usp=sf_link';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -1044,65 +1073,65 @@ class HomeContentMobileState extends State<HomeContentMobile> {
     );
   }
 
-  Widget countDownEnd(){
-    int day = globals.days;
-    int hour = globals.hours;
-    int minute = globals.minutes;
-    int sec = globals.secs;
-    return Container(
-      height: 60.0,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget> [
-            Text(
-              '00 : 00 : 00 : 00',
-              style: TextStyle(
-                fontSize: 36,
-              ),
-            ),
-            Text(
-              'days\t\thours\t\tminutes\t\tseconds',
-              style: TextStyle(
-                fontSize: 9,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget countDownEnd(){
+  //   int day = globals.days;
+  //   int hour = globals.hours;
+  //   int minute = globals.minutes;
+  //   int sec = globals.secs;
+  //   return Container(
+  //     height: 60.0,
+  //     child: Center(
+  //       child: Column(
+  //         mainAxisAlignment: MainAxisAlignment.start,
+  //         crossAxisAlignment: CrossAxisAlignment.start,
+  //         children: <Widget> [
+  //           Text(
+  //             '00 : 00 : 00 : 00',
+  //             style: TextStyle(
+  //               fontSize: 36,
+  //             ),
+  //           ),
+  //           Text(
+  //             'days\t\thours\t\tminutes\t\tseconds',
+  //             style: TextStyle(
+  //               fontSize: 9,
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
-  Widget countDown(){
-    int day = globals.days;
-    int hour = globals.hours;
-    int minute = globals.minutes;
-    int sec = globals.secs;
-    return Container(
-      height: 60.0,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget> [
-            Text(
-              '$day : $hour : $minute : $sec',
-              style: TextStyle(
-                fontSize: 36,
-              ),
-            ),
-            Text(
-              'days\t\thours\t\tminutes\t\tseconds',
-              style: TextStyle(
-                fontSize: 9,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget countDown(){
+  //   int day = globals.days;
+  //   int hour = globals.hours;
+  //   int minute = globals.minutes;
+  //   int sec = globals.secs;
+  //   return Container(
+  //     height: 60.0,
+  //     child: Center(
+  //       child: Column(
+  //         mainAxisAlignment: MainAxisAlignment.start,
+  //         crossAxisAlignment: CrossAxisAlignment.start,
+  //         children: <Widget> [
+  //           Text(
+  //             '$day : $hour : $minute : $sec',
+  //             style: TextStyle(
+  //               fontSize: 36,
+  //             ),
+  //           ),
+  //           Text(
+  //             'days\t\thours\t\tminutes\t\tseconds',
+  //             style: TextStyle(
+  //               fontSize: 9,
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 //  Widget countDown(){
 //    int day = globals.days;
 //    int hour = globals.hours;

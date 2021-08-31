@@ -100,7 +100,7 @@ class NavigationBarState extends State<NavigationBar> {
   }
 
   _launchURL() async {
-    const url = 'https://forms.gle/n6EQ8fP3L9TtBLN67';
+    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSdDE4MKEcAVeQ_mnXONjLqQ6HADItM61NUf5bSUwUZf_8rm0g/viewform?usp=sf_link';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
