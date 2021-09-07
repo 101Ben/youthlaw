@@ -271,7 +271,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
             ),
             //margin: const EdgeInsets.all(12),
             child: Image.network(
-              'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
+              globals.topBanner,
               fit: BoxFit.fill,
             ),
           ),
@@ -295,7 +295,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
           Padding(
             padding: EdgeInsets.only(top: 32.0, left: 12.0),
             child: Text(
-              "Save the Date For the 2021 Forum",
+              "Welcome to the 2021 Forum",
               style: TextStyle(
                 decoration: TextDecoration.underline,
                 fontSize: 32.0,
@@ -304,16 +304,16 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
             ),
           ),
           Container(
-            height: 400,
+            height: 700,
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
             ),
             margin: const EdgeInsets.all(22),
             child: Image.network(
-              'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/Youth%20and%20Law%20Forum%202021%20-%20Save%20the%20Date%20.jpg',
+              'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/2021Flyer.png',
               fit: BoxFit.fill,
-              width: 400,
-              height: 400,
+              width: 550,
+              height: 700,
               semanticLabel: "2021 Forum",
             ),
           ),
@@ -474,7 +474,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
                 ),
                 //margin: const EdgeInsets.all(12),
                 child: Image.network(
-                  'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
+                  globals.topBanner,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -560,7 +560,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
               ),
               //margin: const EdgeInsets.all(12),
               child: Image.network(
-                'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
+                globals.topBanner,
                 fit: BoxFit.fill,
               ),
             ),
@@ -834,7 +834,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
               ),
               //margin: const EdgeInsets.all(12),
               child: Image.network(
-                'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
+                globals.topBanner,
                 fit: BoxFit.fill,
               ),
             ),
@@ -887,7 +887,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
                 ),
                 //margin: const EdgeInsets.all(12),
                 child: Image.network(
-                  'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
+                  globals.topBanner,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -954,7 +954,7 @@ class HomeContentDesktopState extends State<HomeContentDesktop> {
             ),
             //margin: const EdgeInsets.all(12),
             child: Image.network(
-              'https://raw.githubusercontent.com/YouthandLaw/YLFContent/master/frontx.png',
+              globals.topBanner,
               fit: BoxFit.fill,
             ),
           ),
@@ -1314,7 +1314,7 @@ class BottomPage extends StatelessWidget {
     // TODO: implement build
     return Container(
       padding: EdgeInsets.only(top: 18.0, left: 40.0, right: 40.0),
-      color: Colors.blue,
+      color: Colors.deepPurpleAccent,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,

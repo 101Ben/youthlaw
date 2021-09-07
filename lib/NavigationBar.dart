@@ -72,13 +72,31 @@ class NavigationBarState extends State<NavigationBar> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 12),
                 child: RaisedButton(
-                  hoverColor: Colors.amberAccent ,
+                  hoverColor: Colors.lightBlueAccent,
+                  color: Colors.lightBlue,
+                  child: Text(
+                    "Volunteer with us",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.italic,
+                        fontSize: 22
+                    ),
+                  ),
+                    onPressed:  _launchVolunteerURL
+                ),
+              ),
+              Divider(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                child: RaisedButton(
+                  hoverColor: Colors.orange ,
                   color: Colors.orangeAccent,
                   child: Text(
                     'DONATE',
                     style: TextStyle(
                         color: Colors.black,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.italic,
                         fontSize: 22
                     ),
@@ -101,6 +119,15 @@ class NavigationBarState extends State<NavigationBar> {
 
   _launchURL() async {
     const url = 'https://docs.google.com/forms/d/e/1FAIpQLSdDE4MKEcAVeQ_mnXONjLqQ6HADItM61NUf5bSUwUZf_8rm0g/viewform?usp=sf_link';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  _launchVolunteerURL() async {
+    const url = "https://docs.google.com/forms/d/e/1FAIpQLSd6w4vz_hhyaCci4tnmTZnKauSruYEGEY0BP5elxX6S9Q8nig/viewform?usp=sf_link";
     if (await canLaunch(url)) {
       await launch(url);
     } else {

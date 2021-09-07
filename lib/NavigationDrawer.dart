@@ -77,6 +77,24 @@ class NavigationDrawerState extends State<NavigationDrawer> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 12),
                 child: RaisedButton(
+                  hoverColor: Colors.blueAccent ,
+                  color: Colors.lightBlueAccent,
+                  child: Text(
+                    'Volunteer with us',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                        fontStyle: FontStyle.italic,
+                        fontSize: 18
+                    ),
+                  ),
+                 onPressed: _launchVolunteerURL
+                ),
+              ),
+              Divider(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                child: RaisedButton(
                   hoverColor: Colors.amberAccent ,
                   color: Colors.orangeAccent,
                   child: Text(
@@ -88,7 +106,6 @@ class NavigationDrawerState extends State<NavigationDrawer> {
                         fontSize: 22
                     ),
                   ),
-//                  onPressed: _launchURL,
                   onPressed: (){
                     Navigator.pushNamed(context, '/donate');
                   },
@@ -107,6 +124,15 @@ class NavigationDrawerState extends State<NavigationDrawer> {
 
   _launchURL() async {
     const url = 'https://forms.gle/n6EQ8fP3L9TtBLN67';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  _launchVolunteerURL() async {
+    const url = "https://docs.google.com/forms/d/e/1FAIpQLSd6w4vz_hhyaCci4tnmTZnKauSruYEGEY0BP5elxX6S9Q8nig/viewform?usp=sf_link";
     if (await canLaunch(url)) {
       await launch(url);
     } else {

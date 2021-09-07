@@ -41,10 +41,14 @@ class SpeakerDrawerState extends State<SpeakerDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    List<PeopleInfo> _speakers = List<PeopleInfo>();
+    List<PeopleInfo> _pastSpeakers = List<PeopleInfo>();
+    List<PeopleInfo> _currentSpeakers = List<PeopleInfo>();
     for (var temp in _people) {
-      if (temp.group == "speaker20") {
-        _speakers.add(temp);
+      if (temp.group == "speakers") {
+        _pastSpeakers.add(temp);
+      }
+      if (temp.group == "current") {
+        _currentSpeakers.add(temp);
       }
     }
     return Container(
@@ -70,17 +74,43 @@ class SpeakerDrawerState extends State<SpeakerDrawer> {
             ),
           ),
           Divider(),
-      Container(
-        padding: EdgeInsets.symmetric(
-            vertical: 32.0, horizontal: 12.0),
-        child: Column(
-          children: [
-            for (var i = 0; i < _speakers.length; i++)
-              leaderCard(_speakers[i].link, _speakers[i].name,
-                  _speakers[i].bio),
-          ],
-        ),
-      ),
+          Text(
+            "Current Speakers",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(
+                vertical: 32.0, horizontal: 12.0),
+            child: Column(
+              children: [
+                for (var i = 0; i < _currentSpeakers.length; i++)
+                  leaderCard(_currentSpeakers[i].link, _currentSpeakers[i].name,
+                      _currentSpeakers[i].bio),
+              ],
+            ),
+          ),
+          Divider(),
+          Text(
+            "Past Speakers",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(
+                vertical: 32.0, horizontal: 12.0),
+            child: Column(
+              children: [
+                for (var i = 0; i < _pastSpeakers.length; i++)
+                  leaderCard(_pastSpeakers[i].link, _pastSpeakers[i].name,
+                      _pastSpeakers[i].bio),
+              ],
+            ),
+          ),
         ],
       ),
     );
